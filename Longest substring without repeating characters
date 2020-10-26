@@ -1,0 +1,23 @@
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+      
+        if s == "":
+            return 0
+        # if s == " ":
+        #     return 1
+        count = 1
+        lis = []
+        strs = ""
+        a=s
+        while len(lis) != len(s):
+            for i in a:
+            # for j in range(count, len(s)):
+                if i not in strs:
+                    strs += "".join(i)
+                else:
+                    break
+            lis.append(len(strs))
+            strs = ""
+            a = s[count:]
+            count += 1
+        return max(lis)
