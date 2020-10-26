@@ -1,0 +1,25 @@
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        tot = 0
+        lol = []
+        c = 0
+        for i in nums:
+            c += 1
+            for j in range(c,len(nums)):
+                tot = i + nums[j]
+
+                if tot == target:
+                    if i == nums[j]:
+                        lol.append(nums.index(i))
+                        ind = nums.index(i)
+                        nums.pop(ind)
+                        nums.insert(ind,'a')
+                        lol.append(nums.index(nums[j]))
+                        break
+                    else:
+                        lol.append(nums.index(i))
+                        lol.append(nums.index(nums[j]))
+                        break
+                else:
+                    tot = 0
+        return lol
