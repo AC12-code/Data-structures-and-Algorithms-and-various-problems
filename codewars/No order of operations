@@ -1,0 +1,35 @@
+import re
+def no_order(equation):
+    E = equation.split(" ")
+    eq = ""
+    operators = []
+    for i in range(len(E)):
+        eq = eq + E[i]
+    for i in range(len(eq)):
+        if not eq[i].isnumeric():
+            operators.append(eq[i])
+    operands = re.split('[- + / ^ * %]', eq)
+    res = 0
+    while len(operators):
+        op1 = int(operands.pop(0))
+        op2 = int(operands.pop(0))
+        operator = operators.pop(0)
+        if operator == "+":
+            operands.insert(0, str(op1 + op2))
+        elif operator == "-":
+            operands.insert(0, str(op1 - op2))
+        elif operator == "*":
+            operands.insert(0, str(op1 * op2))
+        elif operator == "^":
+            operands.insert(0, str(op1 ** op2))
+        elif operator == "/":
+            if op2 != 0:
+                operands.insert(0, str(op1 // op2))
+            else:
+                return None
+        elif operator == "%":
+            if op2 != 0:
+                operands.insert(0, str(op1 % op2))
+            else:
+                return None
+    return int(operands.pop(0))
