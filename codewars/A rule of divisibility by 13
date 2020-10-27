@@ -1,0 +1,23 @@
+def thirt(n):
+    d = 1, 10, 9, 12, 3, 4
+    c = list(str(n))
+    z = ""
+    b = 0
+    g = []
+    k = ""
+    close = True
+    while close:
+        for i in c[::-1]:          
+            if b == 6:
+                b = 0
+            z = str(d[b] * int(i))
+            g.append(int(z))
+            b += 1
+        k = str(sum(g))
+        if len(k) > 2:
+            c = list(str(k))
+            b = 0
+            g = []
+            close = True
+        else:
+            return sum(g)
