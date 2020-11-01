@@ -1,0 +1,51 @@
+import sys
+
+class Node:
+    def __init__(self,data):
+        self.right=self.left=None
+        self.data = data
+class Solution:
+    def insert(self,root,data):
+        if root==None:
+            return Node(data)
+        else:
+            if data<=root.data:
+                cur=self.insert(root.left,data)
+                root.left=cur
+            else:
+                cur=self.insert(root.right,data)
+                root.right=cur
+        return root
+
+    def levelOrder(self,root):
+        #Write your code here
+        # print(root.data)
+        # temp = root
+        queue = []
+        display = [root.data]
+        # queue.append(root.data)
+        queue.append(root.left)
+        queue.append(root.right)
+        while len(queue) is not 0:
+
+            root = queue[0]
+            queue.pop(0)
+            
+            display.append(root.data)
+            temp = root.left
+            if temp != None:
+                queue.append(temp)
+            temp = root.right
+            if temp != None:
+                queue.append(temp)
+        for i in display:  
+            print(i,end=' ')
+
+            
+T=int(input())
+myTree=Solution()
+root=None
+for i in range(T):
+    data=int(input())
+    root=myTree.insert(root,data)
+myTree.levelOrder(root)
