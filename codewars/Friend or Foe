@@ -1,0 +1,11 @@
+def friend(x):
+   d=[]
+   for c in x:
+       if len(c)==4:
+        d.append(c)
+   return d
+
+
+
+
+print(friend(["Ryan", "Kieran", "Mark"]))
