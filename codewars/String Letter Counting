@@ -1,0 +1,18 @@
+def string_letter_count(s):
+    d = str(s).casefold()
+    print(d)
+    f= sorted(d)
+    con = 0
+    w = ""
+    for i in range(len(f)):
+        con = f.count(f[i])
+        print(con)
+
+
+        if f[i] in w:
+            continue
+
+        if f[i].isalpha():
+            w += str(con) + f[i]
+
+    return w
