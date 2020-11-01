@@ -1,0 +1,22 @@
+# Enter your code here. Read input from STDIN. Print output to STDOUT
+returned = list(map(int,input().split()))
+expected = list(map(int,input().split()))
+fine = 0
+while True:
+    
+    if returned[2] < expected[2]:
+        fine = 0
+        break
+    elif returned[2] > expected[2]:
+        fine = 10000
+        break
+    elif returned[1] > expected[1]:
+        fine = (returned[1]-expected[1])*500
+        break
+    elif returned[0] > expected[0]:
+        fine = (returned[0]-expected[0])*15
+        break
+    else:
+        fine = 0
+        break
+print(fine)
