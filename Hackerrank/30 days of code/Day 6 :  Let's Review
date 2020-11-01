@@ -1,0 +1,17 @@
+t = int(input())
+even = ""
+odd = ""
+for i in range(t):
+    s = list(map(str,input()))
+    for j in range(len(s)):
+       
+        if j % 2 == 0:
+          
+            even += "".join(s[j])
+        else:
+          
+            odd += "".join(s[j])
+      
+    print(even, odd)
+    even = ""
+    odd = ""
