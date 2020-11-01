@@ -1,0 +1,18 @@
+def get_strings(city):
+    d = str(city).casefold()
+    print(d)
+
+    con = 0
+    w = ""
+    for i in range(len(d)):
+        con = d.count(d[i])
+        print(con)
+
+
+        if d[i] in w:
+            continue
+
+        if d[i].isalpha():
+            w += d[i] + ":" + "*"*con + ","
+
+    return w[:-1]
