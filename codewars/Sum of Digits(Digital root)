@@ -1,0 +1,16 @@
+def digital_root(n):
+    even = str(n)
+
+    print(even)
+
+    d = []
+
+    while len(even) > 1:
+
+        d = []
+
+        for c in range(len(even)):
+            d.append(int(even[c]))
+            
+        even = str(sum(d))
+    return int(even)
