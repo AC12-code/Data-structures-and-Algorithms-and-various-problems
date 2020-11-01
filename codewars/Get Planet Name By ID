@@ -1,0 +1,13 @@
+def get_planet_name(case):
+    # This doesn't work; Fix it!
+        name=""
+    
+        if case ==1: name = "Mercury"
+        if case ==2: name = "Venus"
+        if case ==3: name = "Earth"
+        if case ==4: name = "Mars"
+        if case ==5: name = "Jupiter"
+        if case ==6: name = "Saturn"
+        if case ==7: name = "Uranus"  
+        if case ==8: name = "Neptune"
+        return name
