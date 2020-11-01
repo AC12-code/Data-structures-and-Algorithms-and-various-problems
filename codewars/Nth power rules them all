@@ -1,0 +1,8 @@
+def modified_sum(a, n):
+    
+    w = []
+    for ele in a:
+        
+        w.append(ele**n)
+
+    return (sum(w) - sum(a))
