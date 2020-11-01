@@ -1,0 +1,6 @@
+def count_sheeps(sheep):
+    count=0
+    for c in sheep:
+        if c==True:
+            count+=1
+    return count
