@@ -1,0 +1,10 @@
+  # Add your code here
+    
+    def computeDifference(self):
+        diff = []
+        for i in a:
+            diff.append(i)
+    
+        self.maximumDifference = max(diff) - min(diff)
+
+        
