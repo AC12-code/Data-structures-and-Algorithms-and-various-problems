@@ -1,0 +1,19 @@
+# Enter your code here. Read input from STDIN. Print output to STDOUT
+n = int(input())
+lis = []
+don = {}
+# strs = ""
+try:
+    for i in range(n):
+        s = tuple(map(str,input().split()))    
+        don[s[0]] = s[1]
+   
+    for j in range(n):   
+        query = input() 
+        if query in don:
+            # strs = "".join(query+"="+str(don[query]))
+            print(query+"="+str(don[query]))
+        else:
+            print("Not found")
+except:
+    pass
