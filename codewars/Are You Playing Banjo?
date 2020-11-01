@@ -1,0 +1,8 @@
+def areYouPlayingBanjo(name):
+    R='R'
+    r='r'
+    for c in name:
+     if c[0]==R or c[0]== r:
+         return(name+' ' "plays banjo")
+     if c[0]!=R or c[0]!=r:
+         return(name+' ' "does not play banjo")
