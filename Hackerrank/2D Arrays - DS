@@ -1,0 +1,43 @@
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+# Complete the hourglassSum function below.
+def _get_sum(matrix ,row ,col):
+    sum = 0
+    sum += matrix[row-1][col-1]
+    sum += matrix[row - 1][col]
+    sum += matrix[row - 1][col+1]
+    sum += matrix[row][col]
+    sum += matrix[row+1][col-1]
+    sum += matrix[row+1][col]
+    sum += matrix[row+1][col+1]
+    return sum
+def hourglassSum(arr):
+    max_sum = -63
+    for i in range(1,5):
+        for j in range(1,5):
+            current_sum = _get_sum(arr, i, j)
+            # print(current_sum)
+            if current_sum > max_sum:
+                max_sum = current_sum
+   
+    return max_sum
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    arr = []
+
+    for _ in range(6):
+        arr.append(list(map(int, input().rstrip().split())))
+
+    result = hourglassSum(arr)
+
+    fptr.write(str(result) + '\n')
+
+    fptr.close()
