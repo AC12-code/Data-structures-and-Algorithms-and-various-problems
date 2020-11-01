@@ -1,0 +1,46 @@
+#!/bin/python3
+
+import os
+import sys
+
+# Complete the solve function below.
+def solve(n):
+    l = []
+    r = []
+    combo = ""
+    finale = [1]
+    fact = 1
+    for i in range(1, n + 1):
+        fact = fact * i
+        l.append(fact)
+    for j in l[::-1]:
+        r.append(j)
+    for ele in range(len(l)-1):
+
+        combo = str(fact//(l[ele] * r[ele+1]))
+        if len(combo) > 9:
+            less = combo[len(combo)-9:]
+            if less[0] == 0:
+                continue
+            finale.append(int(less))
+        else:
+            finale.append(int(combo))
+
+    finale.append(1)
+    return finale
+    
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    t = int(input())
+
+    for t_itr in range(t):
+        n = int(input())
+
+        result = solve(n)
+
+        fptr.write(' '.join(map(str, result)))
+        fptr.write('\n')
+
+    fptr.close()
