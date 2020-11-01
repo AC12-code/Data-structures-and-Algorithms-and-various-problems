@@ -1,0 +1,9 @@
+def to_jaden_case(string):
+    words = string.split(" ")
+    c = []
+    for word in words:
+        c.append(word.capitalize())
+    return " ".join(c)
+
+
+print(to_jaden_case("The drink not good"))
