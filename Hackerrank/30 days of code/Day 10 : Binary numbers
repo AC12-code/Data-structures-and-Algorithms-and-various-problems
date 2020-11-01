@@ -1,0 +1,22 @@
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+
+
+if __name__ == '__main__':
+    
+    n = int(input())
+    con= []
+    bin_n = bin(n)
+    d = list(map(str,bin_n.split('0')))
+
+    for i in d:
+        c = i.count('1')
+        con.append(c)
+
+    print(max(con))
