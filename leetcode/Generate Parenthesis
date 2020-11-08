@@ -1,0 +1,25 @@
+#Backtracking,recursion.
+class Solution:
+    def generateParenthesis(self, n: int) -> List[str]:
+        def parenthesis(openb, closeb, count, wow,lol):
+
+            if closeb == count:
+
+                lol.append(''.join(wow))
+                
+            if (openb > closeb):
+                wow.append(')')
+                parenthesis(openb,closeb+1,count,wow,lol)
+                wow.pop()
+            if (openb < count):
+                wow.append('(')
+                parenthesis(openb+1,closeb,count,wow,lol)
+                wow.pop()
+            
+
+        openb, closeb = 0, 0
+        new = []
+        s=[]
+        parenthesis(openb, closeb, n, s, new)
+        
+        return new
