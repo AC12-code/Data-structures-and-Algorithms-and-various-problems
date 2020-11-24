@@ -1,0 +1,12 @@
+class Solution:
+    def removeDuplicates(self, nums: List[int]) -> int:
+#         nums[:] = sorted(list(set(nums)))
+#         return len(nums)
+         #OR DOWN CODE
+    
+        for i in nums:        
+            while nums.count(i) != 1:
+                nums.remove(i)
+            
+        
+        return len(nums)
