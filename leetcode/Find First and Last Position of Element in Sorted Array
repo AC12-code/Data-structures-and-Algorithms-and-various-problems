@@ -1,0 +1,22 @@
+class Solution:
+    def searchRange(self, nums: List[int], target: int) -> List[int]:
+        if target not in nums or nums is None:
+            return [-1, -1]
+        lis = []
+        if nums.count(target) == 1:
+            lis.append(nums.index(target))
+            lis.append(nums.index(target))
+            return lis
+        for i in nums:
+            if i == target:
+                c = nums.index(i)
+                lis.append(c)
+                
+                nums.pop(nums.index(i))
+                nums.insert(c,"a")
+        if len(lis) > 2:
+            while len(lis) != 2:
+                lis.pop(1)
+            
+            
+        return lis
