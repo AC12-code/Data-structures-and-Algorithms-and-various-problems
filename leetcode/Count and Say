@@ -1,0 +1,25 @@
+class Solution:
+    def countAndSay(self, n: int) -> str:
+        
+        def ret(lol):
+            strs = ""
+            count = 1
+            
+            lol += "#"
+            for i in range(len(lol)-1):
+
+
+                if lol[i + 1] == lol[i]:
+
+                        count += 1
+                        continue
+
+                else:
+                    strs += "".join(str(count)) + lol[i]
+                    count = 1
+
+            return strs
+        variable = "1"
+        for i in range(n-1):
+            variable = ret(variable)
+        return variable
