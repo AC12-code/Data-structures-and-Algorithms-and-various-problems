@@ -1,0 +1,18 @@
+class Solution:
+    def firstMissingPositive(self, nums: List[int]) -> int:
+        c = 1
+        nums.sort()
+        if c not in nums:                         
+            return c
+        numbernotrepeat = []                           #to store sorted number only once and avoid repetation.
+        d = nums.index(1)
+        nums = nums[d:]                                   #to store positive sorted integers starting from 1. 
+        for i in nums:                                         #loop for adding integer only once
+            if i not in numbernotrepeat:
+                numbernotrepeat.append(i)
+        
+        for i in range(max(nums)):                                         #eg: numbernotrepeat = [1,3,4]
+            if numbernotrepeat[i] > i+1:                                  # i=0 -> 1>1->False
+                return i + 1                                             # i=1 -> 3>2-> True, therefore returning i+1,i.e 2.
+        return max(nums) + 1                                            #    when no number is missing 
+		                                                                              #e.g = nums=[1,2,3], then returning 3+1,i.e 4.
