@@ -1,0 +1,23 @@
+class Solution:
+    def multiply(self, num1: str, num2: str) -> str:
+        dicts = {"1":1,"2":2,"3":3,"4":4,"5":5,"6":6,"7":7,"8":8,"9":9,"0":0}
+        rev_dict = {1: "1", 2: "2", 3: "3", 4: "4", 5: "5", 6: "6", 7: "7",
+                    8: "8", 9: "9", 0: "0"}
+        count = 0
+        def transform(num):
+            store = 0
+            
+            for ind,char in enumerate(num[::-1]):
+                store += dicts[char] * (10 ** ind)
+        
+            return store
+        count = transform(num1) * transform(num2)
+        
+        if count == 0:
+            return "0"
+        
+        strs = ""
+        while count >= 1:
+            strs += rev_dict[count % 10]
+            count //= 10
+        return strs[::-1]
