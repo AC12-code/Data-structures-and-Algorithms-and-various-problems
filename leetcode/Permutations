@@ -1,0 +1,25 @@
+class Solution:
+    from itertools import permutations
+    def permute(self, nums: List[int]) -> List[List[int]]:
+        # perm = permutations(nums)
+        # ret = []
+        # for i in perm:
+        #     ret.append(list(i))
+        # return ret
+        
+        result = []
+
+        # base case
+        if (len(nums) == 1):
+            return [list(nums)]  
+
+        for i in range(len(nums)):
+            n = nums.pop(0)
+            perms = self.permute(nums)
+
+            for perm in perms:
+                perm.append(n)
+            result.extend(perms)
+            nums.append(n)
+
+        return result
