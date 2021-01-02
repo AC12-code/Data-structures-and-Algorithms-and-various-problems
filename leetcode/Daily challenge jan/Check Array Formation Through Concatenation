@@ -1,0 +1,17 @@
+class Solution:
+    def canFormArray(self, arr: List[int], pieces: List[List[int]]) -> bool:
+        lis = []
+        ret = [[] for i in range(len(arr))]
+        for i in pieces:
+            if i[0] not in arr:
+                return False
+            d = arr.index(i[0])
+            lis.append(d)
+        for i in range(len(lis)):
+            ret[lis[i]].extend(pieces[i])
+        lis.clear()
+        for i in ret:
+            lis.extend(i)
+        if arr == lis:
+            return True
+        return False
