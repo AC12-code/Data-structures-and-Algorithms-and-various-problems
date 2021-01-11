@@ -1,0 +1,21 @@
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        if len(strs) < 1 or len(strs) == 1:
+            return [strs]
+        lis = []
+        ret = []
+        result = []
+        for i in strs:
+            lis.append(sorted(i))
+        
+        while strs != []:
+            for j in lis:
+                ret = []
+                while lis.count(j) > 0:
+                    c = lis.index(j)
+                    ret.append(strs[c])
+                    strs.pop(c)
+                    lis.pop(c)
+                result.append(ret)
+        
+        return result
