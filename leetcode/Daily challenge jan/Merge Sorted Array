@@ -1,0 +1,18 @@
+class Solution:
+    def merge(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:
+        """
+        Do not return anything, modify nums1 in-place instead.
+        """
+        
+        for i in nums1[::-1]:
+            if i == 0:
+                nums1.remove(i)
+            if i > 0:
+                break
+        if len(nums1) != m:
+            while len(nums1) != m:
+                nums1.append(0)
+        for j in nums2:
+            nums1.append(j)
+            
+        return nums1.sort()
