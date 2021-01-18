@@ -1,0 +1,21 @@
+class Solution:
+    def countVowelStrings(self, n: int) -> int:
+        if n == 1:
+            return 5
+        if n == 2:
+            return 15
+        
+        ret = []
+        c = [1,2,3,4,5]
+        d=2
+        result = 0
+        while d != n:
+            ret.clear()
+            for i in range(len(c)-1):
+                ret.append(c[i]+c[i+1])
+                c[i+1]=c[i]+c[i+1]
+                
+            d+=1
+        return sum(ret) + 1
+		
+		#reference videolink - https://www.youtube.com/watch?v=gdt7HQF56OI
