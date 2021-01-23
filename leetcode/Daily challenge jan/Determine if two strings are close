@@ -1,0 +1,19 @@
+class Solution:
+    def closeStrings(self, word1: str, word2: str) -> bool:
+        freq1 = []
+        freq2 = []
+        strs = ""       
+        if len(word1) != len(word2):
+            return False
+        for i in word1:
+            if i not in strs:
+                freq1.append(word1.count(i))
+                if i not in word2:
+                    return False
+                freq2.append(word2.count(i))
+                strs+=i
+        freq1.sort()
+        freq2.sort()
+        if freq1 != freq2:
+            return False
+        return True
