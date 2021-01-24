@@ -1,0 +1,23 @@
+class Solution:
+    def diagonalSort(self, mat: List[List[int]]) -> List[List[int]]:
+        row = len(mat)
+        col = len(mat[0])
+        dict = {}
+        lis = [[]for i in range(row)]
+        cal = 0
+        for i in range(row):
+            for j in range(col):
+                cal = i - j
+                dict.setdefault(cal,[]).append(mat[i][j])
+        for i in dict:
+            dict[i].sort()
+        print(dict)
+        for i in range(row):
+            for j in range(col):
+                cal = i-j
+                lis[i].append(dict[cal][0])
+                dict[cal].pop(0)
+        return lis
+        
+        
+        #reference link: https://www.youtube.com/watch?v=iSBgmQCTN8g
