@@ -1,0 +1,21 @@
+class Solution:
+    def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> ListNode:
+        s1=[]
+        s2=[]
+        
+        while headA is not None:  
+            s1.append(headA)
+            headA=headA.next   
+            
+        while headB is not None:
+            s2.append(headB)
+            headB=headB.next
+            
+        wow = None
+        while s1 and s2:
+            
+            if s1[-1] == s2.pop():
+                wow=s1.pop()
+            else:
+                return wow
+        return wow
