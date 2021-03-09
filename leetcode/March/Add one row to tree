@@ -1,0 +1,23 @@
+queue=[root]
+        if d==1:     
+            new=TreeNode(v)
+            new.left=root
+            return new
+    
+        nex=[]
+        level=1
+        while queue:
+            for i in queue:
+                if level == d-1:
+                    old_left, old_right = i.left, i.right
+                    i.left, i.right = TreeNode(v), TreeNode(v)               
+                    i.left.left, i.right.right = old_left, old_right
+                if i.left:                    
+                    nex.append(i.left)
+                if i.right:
+                    nex.append(i.right)
+             
+            queue=nex
+            nex=[]
+            level+=1
+        return root
