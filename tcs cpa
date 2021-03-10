@@ -1,0 +1,72 @@
+#ques link:https://exploreidea.net/cpa-25-feb-2021-xplore-answer-python/
+#(slot2)
+class Blood:
+    def __init__(self,bloodGroup,unitInHand):
+        self.bloodGroup = bloodGroup
+        self.unitInHand = unitInHand
+class BloodBank:
+    def __init__(self,bloodList):
+        self.bloodList = bloodList
+        
+    def isBloodAvailable(self,grp,units):
+        for i in self.bloodList:
+            if i.bloodGroup==grp:
+                if i.unitInHand >= units:
+                    return 1
+                else:
+                    return 0
+        return 0
+                
+            
+    def findMinBloodStock(self):
+        mini=self.bloodList[0].unitInHand
+        lis=[]
+        for i in self.bloodList:
+            if i.unitInHand<mini:
+                mini=i.unitInHand
+        for i in self.bloodList:
+            if i.unitInHand==mini:
+                
+                lis.append(i.bloodGroup)
+        return lis
+    
+if __name__=="__main__":
+    t=int(input())
+    blis=[]
+    for i in range(t):
+        
+        group=str(input())
+        unit=int(input())
+        b1=Blood(group,unit)
+        blis.append(b1)   
+    b2=BloodBank(blis)
+    c=str(input())   
+    d=int(input())
+    res1=b2.isBloodAvailable(c,d)
+    if res1==1:
+        print("Blood Available")
+    else:
+        print("Blood Not Available")
+    res2=b2.findMinBloodStock()
+    for i in res2:
+        print(i)
+    
+#input
+5
+A
+10
+B
+5
+O
+2
+AB
+8
+A-
+2
+AB
+10
+#output
+Blood Not Available
+O
+A-
+
