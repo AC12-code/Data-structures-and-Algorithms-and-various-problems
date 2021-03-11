@@ -1,0 +1,14 @@
+class Solution: 
+    def coinChange(self, coins: List[int], amount: int) -> int:
+        d=float('inf')
+        mat = [d for i in range(amount)]
+        mat.insert(0,0)
+        for i in range(len(coins)):
+            for j in range(len(mat)):
+                if j >= coins[i]:
+                    mat[j]=min(mat[j],1+mat[j-coins[i]])
+        if mat[-1]==float('inf'):
+            return -1
+        return mat[-1]
+		
+		#reference video : https://www.youtube.com/watch?v=NJuKJ8sasGk
