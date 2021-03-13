@@ -1,0 +1,9 @@
+class Solution:
+    def hasAllCodes(self, s: str, k: int) -> bool:
+        lis=set()
+        for i in range(len(s)-k + 1):
+            lis.add(s[i:i+k])
+        if len(lis) == 2**k:       # because there can be 2**k different substrings(solutions)/combinations
+            return True             #for a particular length. eg:"00110" , k=2,ans=00,01,11,10
+        return False                  # since length of ans =4,i.e 2**2=True
+                                         #means every possible combination is present.
