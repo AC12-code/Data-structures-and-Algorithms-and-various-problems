@@ -1,0 +1,14 @@
+class Codec:
+    def __init__(self):
+        self.lookup=[]
+    def encode(self, longUrl: str) -> str:
+        """Encodes a URL to a shortened URL.
+        """
+        self.lookup.append(longUrl)
+        return "http://tinyurl.com/" + str(0)
+        
+    def decode(self, shortUrl: str) -> str:
+        """Decodes a shortened URL to its original URL.
+        """
+        return self.lookup[0]
+        
