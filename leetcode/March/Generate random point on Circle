@@ -1,0 +1,17 @@
+class Solution:
+    import math
+    def __init__(self, radius: float, x_center: float, y_center: float):
+        self.r=radius
+        self.xc=x_center
+        self.yc=y_center
+        
+    
+    def randPoint(self) -> List[float]:
+        while True:                                               #coordinates=[r:1,xc:0,yc:0]
+            X=random.uniform(self.xc - self.r, self.xc + self.r) # choosing a random point between(-1,1) 
+            Y=random.uniform(self.yc - self.r, self.yc + self.r) #choosing a random point between(-1,1) 
+            c=X-self.xc                                           #checking condition for point inside circle
+            d=Y-self.yc                                          #formula=(x-xc)^2 + (y-yc)^2 < r^2
+            if (c**2+d**2) < self.r**2:     
+                return [X,Y]
+#ref video:https://www.youtube.com/watch?v=eUwZ84dSHhs
