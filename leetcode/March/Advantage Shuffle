@@ -1,0 +1,16 @@
+class Solution:
+    def advantageCount(self, A: List[int], B: List[int]) -> List[int]:
+        lis = [0] * len(A)
+        A.sort(reverse=True)
+        c,d=0,len(A)-1
+        B=sorted([(ele,ind) for ind,ele in enumerate(B)],reverse=True)
+    
+        for i,ind in B:
+            if A[c]>i:
+                lis[ind]=A[c]
+                c+=1
+            else:
+                lis[ind]=A[d]
+                d-=1
+
+        return lis
