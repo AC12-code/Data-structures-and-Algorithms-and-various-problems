@@ -1,0 +1,15 @@
+class Solution:
+    def wordSubsets(self, A: List[str], B: List[str]) -> List[str]:
+        cnt=Counter()
+        lis=[]
+        for i in B:
+            cnt |= Counter(i)
+    
+        return [i for i in A if not cnt-Counter(i)]
+        
+  #explaination-The idea here is to use counters: we need to find elements from A, for which each string from B have less or equal frequencies for each symbol. 
+  Let us create cnt: counter, with maximal values for each letter, that is if we have B = [abb, bcc], then we have cnt = {a:1, b:2 ,c:2}. 
+  In python it can be written using | symbol.
+
+  Second step is for each string a from A calcuate counter and check that it is bigger for each element than cnt. 
+  Again in python it can be don in very short way, using not cnt - Counter(a).
