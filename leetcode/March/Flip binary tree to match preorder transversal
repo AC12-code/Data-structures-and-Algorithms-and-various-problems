@@ -1,0 +1,19 @@
+class Solution:
+    def flipMatchVoyage(self, root: TreeNode, voyage: List[int]) -> List[int]:
+        stack=[root]
+        v=0        #index of voyage
+        ans=[]
+        while stack:
+            c=stack.pop()
+            if c.val != voyage[v]:
+                return [-1]
+            v+=1
+            if c.left and c.left.val != voyage[v]:
+                c.left,c.right=c.right,c.left
+                ans.append(c.val)
+            
+            if c.right:
+                stack.append(c.right)
+            if c.left:
+                stack.append(c.left)
+        return ans
