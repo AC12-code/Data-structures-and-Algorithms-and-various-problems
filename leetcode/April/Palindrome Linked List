@@ -1,0 +1,71 @@
+class Solution:
+    def isPalindrome(self, head: ListNode) -> bool:
+        lol=temp=head
+        prev=None
+        while lol!=None and lol.next!=None:
+            temp=temp.next
+            lol=lol.next.next
+        while temp:
+            nex=temp.next
+            temp.next=prev
+            prev=temp
+            temp=nex
+        while prev:
+            if prev.val!=head.val:
+                return False
+            else:
+                prev=prev.next
+                head=head.next
+        return True
+        
+        
+        
+        #ref code and exp'n:
+        
+        
+        
+        """
+    The idea is pretty simple 
+    We will be first using fats and slow pointer approach to get the middle ele
+    After which we could traverse for next part of the linkedlist  &  reverse it and 
+    check it.
+    """
+    
+    
+    # So lets get the middle point
+    
+    fast = slow = head
+    while fast!=None and fast.next!=None:
+        slow = slow.next
+        fast = fast.next.next
+    
+    
+    # reverse the second half
+    prev = None
+    next = None
+    
+    while slow:
+        next = slow.next
+        slow.next = prev
+        prev = slow
+        slow = next
+        
+    
+    #Now the question is how can we access the last node and first node??
+    #So yes you are right we have the prev as our last node
+    # and we have our first node as head
+    
+    # so we will take two pointers 
+    
+    left, right = head, prev
+    # point to be noted the reason we took right coz it'll run untill prev again 
+    # becomes None as we are traversing in reverse direction
+    while right:
+        if left.val!=right.val:
+            return False
+        else:
+            right = right.next
+            left = left.next
+            
+    return True
+        
