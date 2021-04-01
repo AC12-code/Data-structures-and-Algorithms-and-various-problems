@@ -1,0 +1,23 @@
+class Solution:
+    def isPalindrome(self, head: ListNode) -> bool:
+        lol=temp=head
+        prev=None
+        while lol!=None and lol.next!=None:
+            temp=temp.next
+            lol=lol.next.next
+        while temp:
+            nex=temp.next
+            temp.next=prev
+            prev=temp
+            temp=nex
+        while prev:
+            if prev.val!=head.val:
+                return False
+            else:
+                prev=prev.next
+                head=head.next
+        return True
+        
+        
+        #ref code and exp'n:
+        
