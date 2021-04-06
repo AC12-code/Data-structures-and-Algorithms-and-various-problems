@@ -1,0 +1,15 @@
+class Solution:
+    def minOperations(self, n: int) -> int:
+        arr=[]
+        total=0
+        c=1
+        operations=0
+        for i in range(0,n):
+            arr.append(c)
+            total+=c
+            c+=2
+        avg=total//n
+        for i in range(n//2):
+            operations += avg-arr[i]
+        
+        return operations
