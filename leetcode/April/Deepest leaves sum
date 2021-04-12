@@ -1,0 +1,19 @@
+class Solution:
+    def deepestLeavesSum(self, root: TreeNode) -> int:
+        queue=[root]
+        nex=[]
+        lev=[]
+        res=[]
+        while queue:
+            for i in queue:
+                lev.append(i.val)
+                if i.left:
+                    nex.append(i.left)
+                if i.right:
+                    nex.append(i.right)
+            queue=nex           
+            nex=[]
+            res.append(lev)
+            lev=[]
+        return sum(res[-1])
+        
