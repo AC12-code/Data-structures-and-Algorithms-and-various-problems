@@ -1,0 +1,16 @@
+class Solution:
+    def partition(self, head: ListNode, x: int) -> ListNode:
+        small=lol=ListNode(0)
+        great=wow=ListNode(0)
+        if not head:
+            return 
+        while head:
+            if head.val<x:
+                lol.next=ListNode(head.val)
+                lol=lol.next
+            else:
+                wow.next=ListNode(head.val)
+                wow=wow.next
+            head=head.next
+        lol.next=great.next
+        return small.next
