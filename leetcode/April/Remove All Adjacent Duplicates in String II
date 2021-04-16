@@ -1,0 +1,5 @@
+ for i in s:
+        if i*k in s:
+            s=s.replace(i,"")
+        
+    return s
