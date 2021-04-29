@@ -1,0 +1,15 @@
+class Solution:
+    def searchRange(self, nums: List[int], target: int) -> List[int]:
+        if target not in nums:
+            return [-1,-1]
+        lis=[]
+        d=nums.index(target)
+        lis.append(d)
+        c=nums.count(target)
+        tot=1
+        for i in range(d,len(nums)):          
+            if nums[i]==target and tot<c:
+                nums[i]='#'
+                tot+=1         
+        lis.append(nums.index(target))
+        return lis
