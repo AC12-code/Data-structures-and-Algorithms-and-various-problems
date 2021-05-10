@@ -1,0 +1,12 @@
+class Solution:
+    def countPrimes(self, n: int) -> int:
+        if n < 2:
+            return 0
+        lis = [1 for i in range(n)]
+        lis[0]=lis[1]=0
+        for i in range(2,n):
+            for j in range(i*i,n,i):
+                lis[j]=0
+        return sum(lis)
+
+#ref:https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes#Algorithm_complexity
