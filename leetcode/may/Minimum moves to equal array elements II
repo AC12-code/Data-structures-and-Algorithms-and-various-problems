@@ -1,0 +1,10 @@
+class Solution:
+    def minMoves2(self, nums: List[int]) -> int:
+        nums.sort()
+        median=len(nums)//2
+        moves=0
+        for i in nums:
+            moves+=abs(i-nums[median])
+               
+        return moves
+                
