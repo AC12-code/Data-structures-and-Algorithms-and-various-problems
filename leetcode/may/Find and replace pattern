@@ -1,0 +1,37 @@
+Idea is to assign each letter of pattern a value eg: pattern:"abb" ,dicts={a:0,b;1}, lis=[0,1,1]
+Do the same with each string in words eg: words=["abc","mee"]
+for "abc" , dicts={a:0,b:1,c:2}, new_lis=[0,1,2]
+for "mee", dicts={m:0,e:1}, new_lis=[0,1,1]
+
+Then check if new_lis equals lis:
+If equals then add the string to the result list
+Return result list
+If found helful Please Upvote(ps:I need them,hehe)
+
+class Solution:
+    def findAndReplacePattern(self, words: List[str], pattern: str) -> List[str]:
+        dicts=dict()
+        lis=[]
+        new_lis=[]
+        result=[]
+        
+        for i in range(len(pattern)):
+            if pattern[i] not in dicts:
+                dicts[pattern[i]]=i
+                
+        for i in pattern:
+            lis.append(dicts[i])
+            
+        for i in words:
+            dicts=dict()
+            new_lis=[]
+            for j in range(len(i)):
+                if i[j] not in dicts:
+                    dicts[i[j]]=j
+            for j in i:
+                new_lis.append(dicts[j])
+
+            if new_lis==lis:
+                result.append(i)
+                
+        return result
