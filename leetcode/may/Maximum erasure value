@@ -1,0 +1,14 @@
+class Solution:
+    def maximumUniqueSubarray(self, nums: List[int]) -> int:
+        col=set()
+        running,maxm=0,0
+        c=0
+        for i in range(len(nums)):
+            while nums[i] in col:
+                col.remove(nums[c])
+                running-=nums[c]
+                c+=1
+            running+=nums[i]
+            col.add(nums[i])
+            maxm=max(running,maxm)
+        return maxm
