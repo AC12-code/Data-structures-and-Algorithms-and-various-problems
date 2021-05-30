@@ -1,0 +1,17 @@
+class Solution:
+    def maximumGap(self, nums: List[int]) -> int:
+        if len(nums) < 2:
+            return 0  
+        b_size=(max(nums)-min(nums))//(len(nums)-1) or 1
+        c=[[] for _ in range(((max(nums)-min(nums))//b_size)+1)]
+        lis=[]
+        total=0 
+        for i in range(len(nums)):
+            c[(nums[i]-min(nums))//b_size].append(nums[i])
+
+        for i in c:
+            if i != []:
+                lis.append(i)
+        for i in range(len(lis)-1):
+            total=max(total,min(lis[i+1])-max(lis[i]))
+        return total
