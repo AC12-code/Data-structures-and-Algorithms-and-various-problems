@@ -1,0 +1,19 @@
+Lets call a strip of the cake either a vertical or horizontal length that is created by cutting the cake.
+For instance, if we have vertical cuts [1, 4] and the cake is of width 6, then we have three strips (denoted as a tuple with a start and end): [(0, 1), (1, 4), (4, 6)].
+The maximum area will always be the maximum width between two cuts multiplied by the maximum height between two cuts.
+Why: Suppose we find the strip with the maximum height first, because this horizontal strip will have every vertical strip intersecting it, we just need to find the vertical strip with the maximum width.
+We can therefore sort the horizontalCuts and verticalCuts and prefix 0 and h and w respectively to form an array of strips.
+For each strip, we calculate either the height or width (depending on whether they're vertical or horizontal strips) and take the maximum.
+Remember to modulo the answer by (10 ** 9) + 7!
+heights=vertical strips available
+width=horizontal strips available
+class Solution:
+    def maxArea(self, h: int, w: int, horizontalCuts: List[int], verticalCuts: List[int]) -> int:
+        heights = [0] + sorted(horizontalCuts) + [h]
+        widths = [0]+sorted(verticalCuts)+[w]
+        maxheight,maxwidth=0,0
+        for i in range(len(heights)-1):
+            maxheight=max(maxheight,heights[i+1]-heights[i])
+        for i in range(len(widths)-1):
+            maxwidth=max(maxwidth,widths[i+1]-widths[i])
+        return (maxheight*maxwidth)%(10**9+7)
