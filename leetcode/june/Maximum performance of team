@@ -1,0 +1,19 @@
+class Solution:
+    def maxPerformance(self, n: int, speed: List[int], efficiency: List[int], k: int) -> int:
+        lol=[]
+        heapq.heapify(lol)
+        eff, count = 0, 0
+        c=[]
+        for i in range(n):
+            c.append([efficiency[i],speed[i]])
+        c.sort(reverse=True)        
+        # print(c)
+        for i in range(len(c)):
+            count+=c[i][1]
+            heappush(lol,c[i][1])
+            if len(lol)>k:
+                count-=heappop(lol)
+            eff=max(eff,count*c[i][0])
+        return eff%(10**9+7)
+        
+        #ref-https://www.youtube.com/watch?v=57YpuTsx_G0
