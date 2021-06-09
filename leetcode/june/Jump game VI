@@ -1,0 +1,32 @@
+class Solution:
+    def maxResult(self, nums: List[int], k: int) -> int:
+        #TLE SOLN
+#         n = len(nums)
+#         dp = [nums[0]]
+        
+#         z=0
+#         while True:
+#             d = min(n - 1, z + k)
+#             lis = heapify(nums[z + 1:d + 1])
+
+     
+#             tot = dp[-1] + lis[-1]
+
+#             z=nums.index(lis[-1])
+#             dp.append(tot)
+#             if z==len(nums)-1:
+#                 break
+           
+    
+#         return dp[-1]
+            dp=[0]*len(nums)
+            dp[0]=nums[0]
+            d=deque([(nums[0],0)])
+            for i in range(1,len(nums)):
+                dp[i]=nums[i]+d[0][0]
+                while d and d[-1][0]<dp[i]:
+                    d.pop()
+                d.append((dp[i],i))
+                if i-k==d[0][1]:
+                    d.popleft()
+            return dp[-1]
