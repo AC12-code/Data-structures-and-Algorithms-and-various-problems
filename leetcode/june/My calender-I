@@ -1,0 +1,14 @@
+class MyCalendar:
+
+    def __init__(self):
+        self.lis=[]
+       
+
+    def book(self, start: int, end: int) -> bool:
+        for s,e in self.lis:
+        
+            if start<e and end>s:
+                return False
+        
+        self.lis.append((start,end))
+        return True
