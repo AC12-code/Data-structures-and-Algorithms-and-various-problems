@@ -1,0 +1,17 @@
+class Solution:
+    import heapq
+    def minRefuelStops(self, target: int, startFuel: int, stations: List[List[int]]) -> int:
+        stations_passed=[]
+        i=0
+        visited_stations=0
+        while startFuel<target:
+            while i <len(stations) and stations[i][0]<=startFuel:
+                heapq.heappush(stations_passed,-stations[i][1])
+                i+=1
+            if not stations_passed:
+                return -1
+            startFuel+=-heapq.heappop(stations_passed)
+            visited_stations+=1
+        return visited_stations
+      
+    ref:https://www.youtube.com/watch?v=tAdMNnd3CII
