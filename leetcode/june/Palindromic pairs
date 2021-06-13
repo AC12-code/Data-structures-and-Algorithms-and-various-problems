@@ -1,0 +1,16 @@
+class Solution:
+    def palindromePairs(self, words: List[str]) -> List[List[int]]:
+        lis=[]
+        for i,k in enumerate(words):
+            for j in range(i+1,len(words)):
+                if i==j:
+                    continue
+                
+                c=k+words[j]
+                d=words[j]+k
+                if c==c[::-1]:
+                    lis.append([i,j])
+                if d==d[::-1]:
+                    lis.append([j,i])
+                       
+        return lis
