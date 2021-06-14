@@ -1,0 +1,12 @@
+class Solution:
+    def maximumUnits(self, boxTypes: List[List[int]], truckSize: int) -> int:
+        boxTypes=sorted(boxTypes,reverse=True,key=lambda boxTypes:boxTypes[1])  
+         #sorted in descending order based on number of units.
+		    count=0
+        for i in boxTypes:
+            if truckSize==0:
+                break
+            box=min(i[0],truckSize)     #to find possible number of boxes that can fit in truck
+            count+=box*i[1]
+            truckSize-=box
+        return count
