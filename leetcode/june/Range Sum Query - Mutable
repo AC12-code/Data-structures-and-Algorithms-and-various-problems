@@ -1,0 +1,17 @@
+class NumArray:
+
+    def __init__(self, nums: List[int]):
+        self.nums=nums
+        self.sums=sum(nums)
+
+    def update(self, index: int, val: int) -> None:
+        if val>=self.nums[index]:
+            self.sums+=(val-self.nums[index])
+        if val<=self.nums[index]:
+            self.sums-=(self.nums[index]-val)
+        self.nums[index]=val
+  
+    def sumRange(self, left: int, right: int) -> int:
+        l=sum(self.nums[:left])
+        r=sum(self.nums[right+1:])
+        return self.sums-l-r
