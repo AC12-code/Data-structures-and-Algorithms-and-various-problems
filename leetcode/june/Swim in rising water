@@ -13,3 +13,5 @@ class Solution:
                 if (x+dx,y+dy) not in visited and 0<=x+dx<N and 0<=y+dy<N:
                     heapq.heappush(heap,(grid[x+dx][y+dy],x+dx,y+dy))
                     visited.add((x+dx,y+dy))
+
+#find the minimum-est route and then find max in that route.
