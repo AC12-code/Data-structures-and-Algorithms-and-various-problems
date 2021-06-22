@@ -1,0 +1,21 @@
+class Solution:
+    def numMatchingSubseq(self, s: str, words: List[str]) -> int:
+        dicts=collections.defaultdict(list)
+        for i ,j in enumerate(s):
+            dicts[j].append(i)
+        # print(dicts)
+        count=0
+        for i in words:
+            prev,found=-1,True
+            for j in i:
+                temp=bisect.bisect(dicts[j],prev)
+                if temp==len(dicts[j]):
+                    found=False
+                    break
+                else:
+                    prev=dicts[j][temp]
+            if found==True:
+                count+=1
+                
+        return count
+            
