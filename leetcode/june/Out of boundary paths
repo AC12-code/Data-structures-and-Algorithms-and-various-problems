@@ -1,0 +1,15 @@
+class Solution:
+    def findPaths(self, m: int, n: int, maxMove: int, startRow: int, startColumn: int) -> int:
+        move={}
+        def helper(i,j,N):
+            if (i,j,N) in move:return move[(i,j,N)]
+            if N==0:return 0
+            ans=0
+            for x,y in [(0,1),(0,-1),(1,0),(-1,0)]:
+                if i+x>=0 and i+x<m and j+y>=0 and j+y<n:
+                    ans+=helper(i+x,j+y,N-1)
+                else:
+                    ans+=1
+            move[(i,j,N)]=ans
+            return ans
+        return helper(startRow,startColumn,maxMove)%(10**9+7)
