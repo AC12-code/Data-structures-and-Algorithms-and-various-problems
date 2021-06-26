@@ -1,0 +1,10 @@
+class Solution:
+    def countSmaller(self, nums: List[int]) -> List[int]:
+        lis=[]
+        done=[]
+        for i in nums[::-1]:
+            lis.append(bisect.bisect_left(done,i))
+            bisect.insort(done,i)
+        return lis[::-1]
+        
+        #mergesort solution is more optimal(learn that too)
