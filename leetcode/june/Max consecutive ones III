@@ -10,3 +10,13 @@ class Solution:
                 c+=1
             d=max(d,i-c+1)
         return d
+        
+        #OR
+         if nums[i]==0:
+                k-=1
+            if k<0:
+                if nums[c]==0:
+                    k+=1
+                c+=1
+            d=max(d,i-c+1)
+        return d
