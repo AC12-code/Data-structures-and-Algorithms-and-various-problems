@@ -1,0 +1,21 @@
+class Solution:
+    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+        stack=[root]
+        parent={root:None}
+        while p not in parent or q not in parent:
+            c=stack.pop()
+            if c.left:
+                parent[c.left]=c
+                stack.append(c.left)
+            if c.right:
+                parent[c.right]=c
+                stack.append(c.right)
+        ance=set()
+
+        while p:
+            ance.add(p)
+            p=parent[p]
+ 
+        while q not in ance:
+            q=parent[q]
+        return q
