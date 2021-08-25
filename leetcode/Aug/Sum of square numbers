@@ -1,0 +1,10 @@
+class Solution:
+    def judgeSquareSum(self, c: int) -> bool:
+        d=int(sqrt(c))
+        wow=set()
+        for i in range(0,d+1):
+            wow.add(i*i)
+        for i in range(0,d+1):
+            lol=c-(i*i)
+            if lol in wow:
+                return True
