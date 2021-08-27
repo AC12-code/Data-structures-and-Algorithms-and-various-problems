@@ -1,0 +1,29 @@
+class Solution:
+    def findLUSlength(self, strs: List[str]) -> int:
+        
+        c = []
+        lol=[]                                        #To keep track of length of uncommon subsequences.
+        subs=[]                                     #To keep a track of common subsequences.
+        strs.sort(reverse=True,key=len)
+        for j in range(len(strs) - 1):
+            for i in range(j + 1, len(strs)):
+                c = list(strs[i])
+                if (len(strs[i]) == len(strs[j]) and strs[i] != strs[j]) or strs[i] in subs:
+                    continue
+                    
+                for z in strs[j]:
+                    if c:
+                        if c[0] == z:
+                            c.pop(0)
+                            
+                if c == []:
+                    subs.append(strs[i])
+                    
+            if strs[j] not in subs:
+                lol.append(len(strs[j]))
+                
+        if strs[-1] not in subs:
+            lol.append(len(strs[-1]))
+        if lol:
+            return max(lol)
+        return -1
