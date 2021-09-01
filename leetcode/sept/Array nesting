@@ -1,0 +1,22 @@
+class Solution:
+    def arrayNesting(self, nums: List[int]) -> int:
+        sets=set()
+        v_set=set()
+        count=0
+        c,d=0,0
+        
+        for i in range(len(nums)):
+            c=i
+            if nums[c] not in v_set:
+                while True:
+                    if nums[c] in sets:
+                        break
+                    sets.add(nums[c])
+                    v_set.add(nums[c])
+                    d+=1
+                    c=nums[c]
+           
+            count=max(count,d)
+            d=0
+            sets=set()
+        return count
