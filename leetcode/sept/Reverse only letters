@@ -1,0 +1,15 @@
+class Solution:
+    def reverseOnlyLetters(self, s: str) -> str:
+        c,d=0,len(s)-1
+        s=list(s)
+        while c<d:
+            if s[c].isalpha() and s[d].isalpha():
+                s[c],s[d]=s[d],s[c]
+                c+=1
+                d-=1
+            
+            if not s[c].isalpha():
+                c+=1
+            if not s[d].isalpha():
+                d-=1
+        return "".join(s)
