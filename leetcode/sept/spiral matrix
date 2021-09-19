@@ -1,0 +1,15 @@
+class Solution:
+    def spiralOrder(self, matrix: List[List[int]]) -> List[int]:
+        m,n,visited=len(matrix),len(matrix[0]),200
+        res=[]
+        Dir=[0,1,0,-1,0]
+        r,c,d=0,0,0
+        for i in range(m*n):
+            nr,nc=r+Dir[d],c+Dir[d+1]
+            if not 0<=nr<m or not 0<=nc<n or matrix[nr][nc]==visited:
+                d=(d+1)%4
+                nr,nc=r+Dir[d],c+Dir[d+1]
+            res.append(matrix[r][c])
+            matrix[r][c]=visited
+            r,c=nr,nc
+        return res
