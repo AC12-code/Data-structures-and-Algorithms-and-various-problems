@@ -1,0 +1,32 @@
+class Solution:
+    def tictactoe(self, moves: List[List[int]]) -> str:
+        mat=[['0' for i in range(3)] for j in range(3)]
+        for i in range(len(moves)):
+            if i==0 or i%2==0:
+                mat[moves[i][0]][moves[i][1]]="X"
+            else:
+                mat[moves[i][0]][moves[i][1]]="O"
+		 #For same rows
+        for i in mat:                                          
+            if i[0]==i[1]==i[2]=="X":
+                return "A"
+            elif i[0]==i[1]==i[2]=="O":
+                return "B"
+        #For same columns or diagonals           
+        if mat[0][0] == mat[1][0]==mat[2][0]=="X" or mat[0][0]==mat[1][1]==mat[2][2]=="X":
+            return "A"
+        elif mat[0][0] == mat[1][0]==mat[2][0]=="O" or mat[0][0]==mat[1][1]==mat[2][2]=="O":
+            return "B"
+        elif mat[0][1] == mat[1][1]==mat[2][1]=="X" or mat[0][2]==mat[1][1]==mat[2][0]=="X":
+            return "A"
+        elif mat[0][1] == mat[1][1]==mat[2][1]=="O" or mat[0][2]==mat[1][1]==mat[2][0]=="O":
+            return "B"
+        elif mat[0][2] == mat[1][2]==mat[2][2]=="X":
+            return "A"
+        elif mat[0][2] == mat[1][2]==mat[2][2]=="O":
+            return "B"
+        
+        elif len(moves)==9:
+            return "Draw"
+        else:
+            return "Pending"
