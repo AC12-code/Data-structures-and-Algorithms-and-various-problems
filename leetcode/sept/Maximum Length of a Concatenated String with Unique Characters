@@ -1,0 +1,12 @@
+class Solution:
+    def maxLength(self, arr: List[str]) -> int:
+        lol=[""]
+        count=0
+        for i in arr:
+            for j in range(len(lol)):
+                temp=lol[j]+i
+                if len(temp)!=len(set(temp)):
+                    continue
+                lol.append(temp)
+                count=max(count,len(temp))
+        return count
