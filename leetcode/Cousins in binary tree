@@ -1,0 +1,29 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def isCousins(self, root: Optional[TreeNode], x: int, y: int) -> bool:
+        dicts=dict()
+        lol=[root]
+        new_lis=[]
+        while lol:
+            dicts=dict()         
+            for i in lol:
+                if i.left:
+                    new_lis.append(i.left)
+                    if i.left.val==x or i.left.val==y:
+                        dicts[i.val]=i.left.val
+                     
+                if i.right:
+                    new_lis.append(i.right)
+                    if i.right.val==x or i.right.val==y:
+                        dicts[i.val]=i.right.val
+                        
+            lol=new_lis
+            new_lis=[]
+            if len(dicts)==2:
+                return True            
+        return False
