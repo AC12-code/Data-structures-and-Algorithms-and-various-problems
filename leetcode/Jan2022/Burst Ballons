@@ -1,0 +1,40 @@
+def maxCoins(nums):
+    if len(nums) > 1 and len(set(nums)) == 1:
+        return (nums[0] ** 3) * (len(nums) - 2) + nums[0] ** 2 + nums[0]
+
+        # pad 1s
+    nums = [1] + nums + [1]
+
+    N = len(nums)
+
+    # dp[i][j] is max points one can get by bursting all balloons from [i...j] inclusive of i and j
+    dp = []
+    for i in range(N):
+        dp.append([0] * N)
+
+    # burst one balloon from i to i
+    for i in range(1, N - 1):
+        dp[i][i] = nums[i - 1] * nums[i] * nums[i + 1]
+
+    # burst k > 1 balloon from i to j
+    for k in range(2, N - 1):
+        for i in range(1, N - 1):
+            j = i + k - 1
+            if j >= N - 1:
+                continue
+            # burst i...j, with l being the last balloon
+            for l in range(i, j + 1):
+                left, right, last = 0, 0, 0
+                # points from bursting balloons left of l
+                if l - 1 >= i:
+                    left = dp[i][l - 1]
+                # points from bursting balloons to the right of l
+                if l + 1 <= j:
+                    right = dp[l + 1][j]
+                # points from bursting l-th balloon as the last one to burst in [i,j]
+                last = nums[i - 1] * nums[l] * nums[j + 1]
+                dp[i][j] = max(dp[i][j], left + right + last)
+
+    return dp[1][N - 2]
+
+#ref-tushar roy https://www.youtube.com/watch?v=IFNibRVgFBo
