@@ -1,0 +1,27 @@
+class Solution:
+    def maxDistToClosest(self, seats: List[int]) -> int:
+        n=len(seats)
+        c,d=0,0
+        left,right=[n]*n,[n]*n
+        for i in range(n):
+            
+            if seats[i]==1:
+                left[i]=0
+            else:
+                if i==0:
+                    continue
+                left[i]=left[i-1]+1
+        for j in range(n-1,-1,-1):
+            
+            if seats[j]==1:
+                right[j]=0
+            else:
+                if j==n-1:
+                    continue
+                right[j]=right[j+1]+1
+        
+        for z in range(n):
+            c=min(left[z],right[z])
+            d=max(d,c)
+        return d
+        
