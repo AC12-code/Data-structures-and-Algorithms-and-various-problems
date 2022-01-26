@@ -1,0 +1,18 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def getAllElements(self, root1: TreeNode, root2: TreeNode) -> List[int]:
+        lis=[]   
+        def dfs(root,lis):
+            if root:
+                dfs(root.left,lis)
+                lis+=[root.val] 
+                dfs(root.right,lis)
+        
+        dfs(root1,lis)
+        dfs(root2,lis)                    
+        return sorted(lis)
