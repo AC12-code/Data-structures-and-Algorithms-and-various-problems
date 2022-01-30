@@ -1,0 +1,14 @@
+class Solution:
+    def rotate(self, nums: List[int], k: int) -> None:
+        """
+        Do not return anything, modify nums in-place instead.
+        """
+        k%=len(nums)
+        c=-1
+        nums.reverse()
+        for i in range(k//2):
+            nums[i],nums[k-i-1]=nums[k-i-1],nums[i]
+        for j in range(k,k+((len(nums)-k)//2)):
+            nums[j],nums[c]=nums[c],nums[j]
+            c-=1
+            
