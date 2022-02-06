@@ -1,0 +1,18 @@
+Two pointer
+def removeDuplicates(nums):
+    k = 0
+    for i in nums:
+        if k < 2 or i > nums[k - 2]:
+            nums[k] = i
+            k += 1
+    return k
+
+
+and different
+ def removeDuplicates(self, nums: List[int]) -> int:    
+        for i in nums:
+            if nums.count(i)>2:
+                while nums.count(i)!=2:
+                    nums.pop(nums.index(i))
+        return len(nums)
+       
