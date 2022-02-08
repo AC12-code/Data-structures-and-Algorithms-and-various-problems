@@ -1,0 +1,26 @@
+1)O(1)-Digital root approach
+
+class Solution:
+    def addDigits(self, num: int) -> int:
+      if num == 0:
+        return 0
+      elif num % 9 == 0:
+        return 9
+      return num % 9
+		
+2)Iterative Approach
+
+class Solution:
+    def addDigits(self, num: int) -> int:
+        c=str(num)
+        lis=[]
+        for i in c:
+            lis+=[int(i)]
+        result=sum(lis)
+        while len(str(result))!=1:
+            c=str(result)
+            lis=[]
+            for i in c:
+                lis+=[int(i)]
+            result=sum(lis)
+        return result
