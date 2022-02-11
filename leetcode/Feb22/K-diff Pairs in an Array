@@ -1,0 +1,16 @@
+class Solution:
+    def findPairs(self, nums: List[int], k: int) -> int:
+        wow=dict()
+        count=0
+        for i in nums:
+            wow[i]=nums.count(i)
+        if k==0:
+            for key,val in wow.items():
+                if val>1:
+                    count+=1
+        else:
+            for key,val in wow.items():
+                if key+k in wow:
+                    count+=1
+        return count
+        
