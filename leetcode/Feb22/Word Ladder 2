@@ -1,0 +1,27 @@
+class Solution:
+    def ladderLength(self, beginWord: str, endWord: str, wordList: List[str]) -> int:
+        wordList=set(wordList)
+        if endWord not in wordList:
+            return 0
+        print(wordList)
+        c=0
+        que=[beginWord]
+        while que:
+            c+=1           
+            d=len(que)
+            while d:
+                curr=que[0]
+                del que[0]
+                for i in range(len(curr)):
+                    for j in range(ord("a"),ord("z")+1):
+                        new_word=curr[:i]+chr(j)+curr[i+1:]
+                        if new_word == endWord:
+                            return c+1
+                        if new_word in wordList:
+                            que+=[new_word]
+                            wordList.remove(new_word)
+                d-=1
+        return 0
+        
+        
+        wow explaination-https://leetcode.com/problems/word-ladder/discuss/1764371/A-very-highly-detailed-EXPLANATION
