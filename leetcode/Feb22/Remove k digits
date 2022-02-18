@@ -1,0 +1,17 @@
+class Solution:
+    def removeKdigits(self, num: str, k: int) -> str:
+        lis = []
+        for i in range(len(num)):
+
+            while lis and k and lis[-1] > num[i]:
+                lis.pop()
+                k -= 1
+
+
+
+            lis.append(num[i])
+
+        if k:
+            lis=lis[0:-k]
+        lis="".join(lis)
+        return lis.lstrip('0') or '0'
