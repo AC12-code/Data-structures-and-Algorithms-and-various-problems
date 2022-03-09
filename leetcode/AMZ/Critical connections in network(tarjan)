@@ -1,0 +1,27 @@
+class Solution:
+    def criticalConnections(self, n: int, connections: List[List[int]]) -> List[List[int]]:
+        def dfs(rank,curr,prev):
+            low[curr]=rank
+            for neighbor in edges[curr]:
+                if neighbor==prev:continue
+                
+                if not low[neighbor]:
+                    dfs(rank+1,neighbor,curr)
+                low[curr]=min(low[curr],low[neighbor])
+                if low[neighbor]>=rank+1:
+                    result.append([curr,neighbor])
+        
+        
+        
+        
+        
+        low,edges,result=[0]*n,defaultdict(list),[]
+        for i,j in connections:
+            edges[i].append(j)
+            edges[j].append(i)
+        dfs(1,0,-1)
+
+        return result
+        
+        
+        #ref https://www.youtube.com/watch?v=RYaakWv5m6o
