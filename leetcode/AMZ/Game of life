@@ -26,11 +26,10 @@ class Solution:
                 if board[i][j]==0:
                     board[i][j]=-search(i, j, board[i][j])
                 else:
-                    board[i][j] = search(i, j, board[i][j])
-        # print(board)
+                    board[i][j] = search(i, j, board[i][j])+1
         for f in range(len(board)):
             for z in range(len(board[0])):
-                if board[f][z] in {3,2,-3}:
+                if board[f][z] in {3,4,-3}:
                     board[f][z]=1
                 else:
                     board[f][z]=0
