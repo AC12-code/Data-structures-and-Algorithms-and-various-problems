@@ -1,0 +1,13 @@
+class Solution:
+    def twoCitySchedCost(self, costs: List[List[int]]) -> int:
+        A_total=0
+        profit=[]
+        for i,j in costs:
+            A_total+=i
+        for i,j in costs:
+            profit.append(j-i)
+        profit.sort()
+        for i in range(len(costs)//2):
+            A_total+=profit[i]
+        return A_total
+                
