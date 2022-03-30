@@ -1,0 +1,15 @@
+class Solution:
+    def numRescueBoats(self, people: List[int], limit: int) -> int:
+        people.sort()
+        c,d=0,len(people)-1
+        count=0
+        while c<=d:
+            
+            if people[c]+people[d]<=limit:
+                d-=1
+                c+=1
+            else:
+                d-=1
+                
+            count+=1
+        return count
