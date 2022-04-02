@@ -1,0 +1,31 @@
+class Solution:
+    def minRemoveToMakeValid(self, s: str) -> str:
+        stack = []
+        strs = ""
+        for i in range(len(s)):
+            if s[i] == "(":
+                stack.append(s[i])
+            else:
+                if stack and s[i] == ")":
+
+                    stack.pop()
+                else:
+                    if not stack and s[i] == ")":
+                        if i < len(s) - 1:
+                            s = s[0:i] + '0' + s[i + 1:]
+                        else:
+                            s = s[0:i] + '0'
+        if stack:
+            c=len(stack)
+            for i in range(len(s)-1,-1,-1):
+                if s[i] == "(" and c!=0:
+                    if i < len(s) - 1:
+                        s = s[0:i] + '0' + s[i + 1:]
+                        c-=1
+                    else:
+                        s = s[0:i] + '0'
+                        c-=1
+        for i in s:
+            if i != '0':
+                strs += i
+        return strs
