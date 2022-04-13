@@ -1,0 +1,19 @@
+class Solution:
+    def generateMatrix(self, n: int) -> List[List[int]]:
+        m, n, visited = n, n, 200
+        res = []
+        Dir = [0, 1, 0, -1, 0]
+        matrix = [[0 for i in range(n)] for j in range(n)]
+        lol=[[0 for i in range(n)] for j in range(n)]
+        r, c, d,var = 0, 0, 0,1
+        for i in range(m * n):
+            nr, nc = r + Dir[d], c + Dir[d + 1]
+            if not 0 <= nr < m or not 0 <= nc < n or matrix[nr][nc] == visited:
+                d = (d + 1) % 4
+                nr, nc = r + Dir[d], c + Dir[d + 1]
+            res.append(matrix[r][c])
+            lol[r][c]=var
+            matrix[r][c] = visited
+            r, c = nr, nc
+            var+=1
+        return lol
