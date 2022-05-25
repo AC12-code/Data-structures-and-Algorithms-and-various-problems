@@ -1,0 +1,11 @@
+class Solution:
+    def maxEnvelopes(self, envelopes: List[List[int]]) -> int:
+        envelopes.sort(key=lambda x:[x[0],-x[1]])
+        store=[]
+        for i,height in envelopes:
+            left=bisect_left(store,height)
+            if left==len(store):
+                store.append(height)
+            else:
+                store[left]=height
+        return len(store)
