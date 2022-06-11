@@ -1,0 +1,22 @@
+class Solution:
+    def minOperations(self, nums: List[int], x: int) -> int:
+        total=sum(nums)
+        if total<x:
+            return -1
+        if total==x:
+            return len(nums)
+            
+        total-=x
+        
+        max_sub=left=curr_sum=0
+        for right,num in enumerate(nums):
+            curr_sum+=num
+            while curr_sum>total:
+                curr_sum-=nums[left]
+                left+=1
+            if curr_sum==total:
+                max_sub=max(max_sub,right-left+1)
+        if max_sub>0:
+            return len(nums)-max_sub
+        return -1
+            
