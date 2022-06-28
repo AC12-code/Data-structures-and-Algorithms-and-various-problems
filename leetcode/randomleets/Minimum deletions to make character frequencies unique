@@ -1,0 +1,12 @@
+class Solution:
+    def minDeletions(self, s: str) -> int:
+        frequencies = sorted(Counter(s).values(), reverse=True)
+        deletes=0
+        next_freq=len(s)
+        for i in frequencies:
+            next_freq=min(next_freq,i)
+            deletes+=i-next_freq
+            
+            if next_freq>0:
+                next_freq-=1
+        return deletes
