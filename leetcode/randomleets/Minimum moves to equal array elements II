@@ -1,0 +1,27 @@
+Approach 1:
+
+class Solution:
+    def minMoves2(self, nums: List[int]) -> int:
+        nums.sort()
+        median=moves=0        
+        if len(nums)%2!=0:
+            median=nums[len(nums)//2]
+        else:
+            median=(nums[(len(nums)//2)-1] +nums[len(nums)//2])//2      
+            
+        for i in nums:
+            moves+=abs(i-median)            
+        return moves
+		
+Approach 2:		
+		
+class Solution:
+    def minMoves2(self, nums: List[int]) -> int:
+        
+        nums.sort()
+        median=len(nums)//2
+        moves=0
+        for i in nums:
+            moves+=abs(i-nums[median])
+               
+        return moves
