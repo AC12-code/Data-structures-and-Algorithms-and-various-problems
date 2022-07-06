@@ -1,0 +1,20 @@
+#1.Iterative
+
+class Solution:
+    def fib(self, n: int) -> int:
+        if n<=1:
+            return n
+        stack=[0,1]
+        for i in range(2,n+1):
+            stack.append(stack[i-1]+stack[i-2])
+            
+        return stack[-1]
+		
+#2.Recursive
+
+class Solution:
+    def fib(self, n: int) -> int:
+        if n<=1:
+            return n        
+        else:
+            return self.fib(n-1)+self.fib(n-2)	
