@@ -1,0 +1,20 @@
+class Solution:
+    def findPaths(self, m: int, n: int, maxMove: int, startRow: int, startColumn: int) -> int:
+        # memo=[[[-1]*(maxMove+1) for i in range(n+1)]for j in range(m+1)]
+        move={}
+        def helper(r,c,maxMove):
+            if maxMove<0:
+                return 0
+            if r<0 or r>=m or c<0 or c>=n:
+                return 1
+            if (r,c,maxMove) in move:return move[(r,c,maxMove)]
+            # if memo[r][c][maxMove]!=-1:
+            #     return memo[r][c][maxMove]
+            up=helper(r-1,c,maxMove-1)
+            down=helper(r+1,c,maxMove-1)
+            left=helper(r,c-1,maxMove-1)
+            right=helper(r,c+1,maxMove-1)
+            
+            move[(r,c,maxMove)]=up+down+left+right
+            return move[(r,c,maxMove)]
+        return helper(startRow,startColumn,maxMove)%((10**9)+7)
