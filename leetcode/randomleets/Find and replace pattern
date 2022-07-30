@@ -1,0 +1,25 @@
+class Solution:
+    def findAndReplacePattern(self, words: List[str], pattern: str) -> List[str]:
+        lis=[]
+        compare=[]
+        res=[]
+        store={}
+        c=1
+        for i in pattern:
+            if i not in store:
+                store[i]=c
+                c+=1
+            lis.append(store[i])
+            
+        for i in words:
+            store={}
+            compare=[]
+            c=1
+            for j in i:
+                if j not in store:
+                    store[j]=c
+                    c+=1
+                compare.append(store[j])
+            if compare==lis:
+                res.append(i)
+        return res
