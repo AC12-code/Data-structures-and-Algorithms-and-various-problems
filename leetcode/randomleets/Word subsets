@@ -1,0 +1,28 @@
+class Solution:
+    def wordSubsets(self, words1: List[str], words2: List[str]) -> List[str]:
+        
+        target={}
+        for i in words2:
+            store={}
+            for j in i:
+                if j not in store:
+                    store[j]=1
+                else:
+                    store[j]+=1
+            for c,d in store.items():
+                if c not in target:
+                    target[c]=d
+                else:
+                    target[c]=max(target[c],d)
+        res=[]
+        for i in words1:
+            include=True
+            for j in target:
+                if i.count(j)<target[j]:
+                    include=False
+                    break
+            if include:
+                res.append(i)
+        return res
+                
+                    
