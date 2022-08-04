@@ -1,0 +1,13 @@
+class Solution:
+    def mirrorReflection(self, p: int, q: int) -> int:
+        #p is reflection and q is no of square required to contemplate receptor corner
+        while p%2==0 and q%2==0:
+            p/=2
+            q/=2
+        if p%2==0 and q%2!=0:
+            return 2
+        elif p%2!=0 and q%2==0:
+            return 0
+        else:   #p and q odd
+            return 1
+            
