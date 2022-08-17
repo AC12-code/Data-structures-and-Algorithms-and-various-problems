@@ -1,0 +1,15 @@
+class Solution:
+    def uniqueMorseRepresentations(self, words: List[str]) -> int:
+        dis={}
+        lis=set()
+        char="abcdefghijklmnopqrstuvwxyz"
+        alph=[".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--.."]
+        for i in range(26):
+            dis[char[i]]=alph[i]
+        for j in words:
+            strs=""
+            for c in j:
+                strs+=dis[c]
+            if strs not in lis:
+                lis.add(strs)
+        return len(lis)
