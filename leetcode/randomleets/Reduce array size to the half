@@ -1,0 +1,18 @@
+class Solution:
+    def minSetSize(self, arr: List[int]) -> int:
+        dis={}
+        res=set()
+        for i in arr:
+            if i not in dis:
+                dis[i]=1
+            else:
+                dis[i]+=1
+        c=sorted(dis.items(),key=lambda x:x[1],reverse=True)
+        comp=0
+        for i,j in c:        
+            if comp>=len(arr)//2:
+                break
+            comp+=j
+            res.add(i)
+        return len(res)
+        
