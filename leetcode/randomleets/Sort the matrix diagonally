@@ -1,0 +1,13 @@
+class Solution:
+    def diagonalSort(self, mat: List[List[int]]) -> List[List[int]]:
+        maps=defaultdict(list)
+        r,c=len(mat),len(mat[0])
+        for i in range(r):
+            for j in range(c):
+                maps[i-j].append(mat[i][j])
+        for k in maps:
+            maps[k].sort(reverse=True)
+        for i in range(r):
+            for j in range(c):
+                mat[i][j]=maps[i-j].pop()
+        return mat
