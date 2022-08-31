@@ -1,0 +1,24 @@
+class Solution:
+    def pacificAtlantic(self, heights: List[List[int]]) -> List[List[int]]:
+        rows,cols=len(heights),len(heights[0])
+        p_visited=set()
+        a_visited=set()
+        def traverse(r,c,visited):
+            if (r,c) in visited:
+                return
+            visited.add((r,c))
+            directions=[(r+1,c),(r-1,c),(r,c+1),(r,c-1)]
+            for i,j in directions:
+                if 0<=i<=rows-1 and 0<=j<=cols-1:
+                    if heights[i][j]>=heights[r][c]:
+                        traverse(i,j,visited)
+                    
+        for i in range(rows):
+            traverse(i,0,p_visited)
+            traverse(i,cols-1,a_visited)
+        for j in range(cols):
+            traverse(0,j,p_visited)
+            traverse(rows-1,j,a_visited)
+        
+        return (p_visited & a_visited)
+            
