@@ -1,0 +1,55 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def verticalTraversal(self, root: Optional[TreeNode]) -> List[List[int]]:
+#         lis=[root]
+#         cols=[0]
+#         new_lis=[]
+#         vals=[]
+#         dis=defaultdict(list)
+#         while lis:
+#             d1=defaultdict(list)
+#             for i in range(len(lis)):
+#                 if lis[i].left:
+#                     new_lis.append(lis[i].left)
+#                     vals.append(cols[i]-1)
+#                 if lis[i].right:
+#                     new_lis.append(lis[i].right)
+#                     vals.append(cols[i]+1)
+#                 d1[cols[i]].append(lis[i].val)
+#                 print(d1)
+#             lis=new_lis
+#             new_lis=[]
+#             cols=vals
+#             vals=[]
+#             for key in d1:
+#                 dis[key] += sorted(d1[key])
+      
+        
+#         for i in sorted(dis):
+#             lis.append(dis[i])
+#         return lis
+
+
+        lis=[(root,0)]
+        new_lis=[]
+        dis=defaultdict(list)
+        while lis:
+            d1=defaultdict(list)
+            for i,j in lis:
+                if i.left:
+                    new_lis.append((i.left,j-1))                   
+                if i.right:
+                    new_lis.append((i.right,j+1))                  
+                d1[j].append(i.val)               
+            lis=new_lis
+            new_lis=[]           
+            for key in d1:
+                dis[key] += sorted(d1[key])            
+        for i in sorted(dis):
+            lis.append(dis[i])
+        return lis
