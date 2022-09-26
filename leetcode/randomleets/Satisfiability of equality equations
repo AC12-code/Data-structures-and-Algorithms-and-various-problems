@@ -1,0 +1,25 @@
+class Solution:
+    def equationsPossible(self, equations: List[str]) -> bool:
+        parent={}
+        def find(c):
+            if c not in parent:
+                return c
+            else:
+                return find(parent[c])
+            
+        for i in equations:   
+            if i[1]=="=":
+                x,y=i[0],i[-1]
+                a,b=find(x),find(y)
+                if a!=b:
+                    parent[b]=a
+        
+                
+               
+        for i in equations:   
+            if i[1]=="!" and find(i[0])==find(i[-1]):
+                return False
+                
+        
+        return True
+                
