@@ -1,0 +1,19 @@
+class Solution:
+    def pushDominoes(self, d: str) -> str:
+        d="L"+d+"R"
+        res=""
+        j=0
+        for i in range(1,len(d)):
+            if d[i]==".":
+                continue
+            if j:
+                res+=d[j]
+            middle=i-j-1
+            if d[i]==d[j]:
+                res+=d[j]*middle
+            elif d[j]=="L" and d[i]=="R":
+                res+="."*middle
+            else:
+                res+="R"*(middle//2)+"."*(middle%2)+"L"*(middle//2)
+            j=i
+        return res
