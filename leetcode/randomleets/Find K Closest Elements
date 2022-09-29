@@ -1,0 +1,13 @@
+class Solution:
+    def findClosestElements(self, arr: List[int], k: int, x: int) -> List[int]:
+        ans=[]
+        dis=defaultdict(list)        
+        for i in arr:
+            dis[abs(i-x)].append(i)   
+        for j in sorted(dis):            
+            for i in dis[j]: 
+                if len(ans)!=k:
+                    ans.append(i)
+                else:
+                    return sorted(ans)
+        return sorted(ans)
