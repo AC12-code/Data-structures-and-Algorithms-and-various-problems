@@ -1,0 +1,42 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def findTarget(self, root: Optional[TreeNode], k: int) -> bool:
+	
+#Solution 1 
+        res=[]
+        def helper(root):   
+            if root:                
+                helper(root.left)
+                res.append(root.val)
+                helper(root.right)   
+        helper(root)
+        c,d=0,len(res)-1
+        res.sort()    
+        while c<d:
+            tot=res[c]+res[d]
+            if tot<k:
+                c+=1
+            elif tot>k:
+                d-=1
+            else:
+                return True
+        return False
+		
+# Solution 2
+        res=set()
+        def helper(root,k):   
+            if root:
+                if k-root.val in res:return True
+                res.add(root.val)
+                
+                return helper(root.left,k) or helper(root.right,k)
+                
+        c=helper(root,k)        
+        if c:
+            return True
+        return False
