@@ -1,0 +1,45 @@
+class Solution:
+    def checkSubarraySum(self, nums: List[int], k: int) -> bool:
+#         def helper(c,ans,r):                            #recursive approach got tle 94/97
+#             if r==len(nums)-1:
+#                 return
+#             if ans%k==0:
+#                 return True            
+#             else:
+#                 if c==len(nums):
+#                     r=r+1
+#                     if r==len(nums)-1:return
+#                     c=r+1
+#                     ans=0
+#                     ans+=nums[r]+nums[c]        
+#                     return helper(c+1,ans,r)
+#                 else:
+#                     ans+=nums[c]
+#                     return helper(c+1,ans,r)
+#         if len(nums)<2:
+#             return False
+#         if len(nums)==2:
+#             if sum(nums)%k==0:
+#                 return True
+#             return False
+#         return helper(2,nums[0]+nums[1],0)
+
+
+
+        dic = {0:-1}
+        summ = 0
+        for i, n in enumerate(nums):
+            if k != 0:
+                summ = (summ + n) % k
+            else:
+                summ += n
+            if summ not in dic:
+                dic[summ] = i
+            else:
+                if i - dic[summ] >= 2:
+                    return True
+        return False
+
+
+        
+    
