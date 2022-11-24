@@ -1,0 +1,28 @@
+class Solution:
+    def exist(self, board: List[List[str]], word: str) -> bool:
+        dis=defaultdict(int)
+        for i in range(len(board)):
+            for j in range(len(board[0])):
+                dis[board[i][j]]+=1
+        wordi=Counter(word)
+        for i in wordi:
+            if i not in dis or dis[i]<wordi[i]:
+                return False
+        for i in range(len(board)):
+            for j in range(len(board[0])):
+                if self.dfs(i,j,0,board,word):
+                    return True
+        return False
+    def dfs(self,i,j,k,board,word):
+        if i<0 or j<0 or i>=len(board) or j >=len(board[0]) or k>=len(word) or board[i][j]!=word[k]:
+            return False
+        if k==len(word)-1:
+            return True
+        directions=[(0,1),(1,0),(0,-1),(-1,0)]
+        for c,d in directions:
+            tmp=board[i][j]
+            board[i][j]=-1
+            if self.dfs(i+c,j+d,k+1,board,word):
+                return True
+            board[i][j]=tmp
+        
