@@ -1,0 +1,18 @@
+class Solution:
+    def findWinners(self, matches: List[List[int]]) -> List[List[int]]:
+        wins=set()
+        loss=defaultdict(int)
+        l=set()
+        for i,j in matches:
+            if i not in loss and i not in wins:
+                wins.add(i)
+            loss[j]+=1
+            if j in wins:
+                wins.remove(j)
+        c=sorted(loss.items(),key=lambda x:x[1])
+        for i in c:
+            if i[1]>1:
+                break
+            l.add(i[0])
+            
+        return [sorted(wins),sorted(l)]
