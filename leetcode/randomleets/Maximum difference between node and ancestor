@@ -1,0 +1,22 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def maxAncestorDiff(self, root: Optional[TreeNode]) -> int:
+        def helper(root,maxm,minm,res):
+            if root:
+                res[0]=max(res[0],abs(maxm-root.val),abs(minm-root.val))
+                maxm=max(maxm,root.val)
+                minm=min(minm,root.val)
+                helper(root.left,maxm,minm,res)
+                helper(root.right,maxm,minm,res)
+            return
+        res=[0]
+        helper(root,root.val,root.val,res)
+        # print(res)
+        return res[0]
+
+
