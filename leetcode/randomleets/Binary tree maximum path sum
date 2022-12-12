@@ -1,0 +1,23 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def maxPathSum(self, root: Optional[TreeNode]) -> int:
+        max_path=float('-inf')
+        def helper(root):
+            nonlocal max_path
+            if root:
+                left_gain=max(helper(root.left),0)
+                right_gain=max(helper(root.right),0)
+                cur_path=root.val + left_gain + right_gain
+                max_path=max(max_path,cur_path)
+                return root.val+max(left_gain,right_gain)
+            return 0
+        
+        helper(root)
+        return max_path
+        
+#lovely expl'n- https://leetcode.com/problems/binary-tree-maximum-path-sum/solutions/603423/python-recursion-stack-thinking-process-diagram/?orderBy=most_votes        
