@@ -1,0 +1,18 @@
+class Solution:
+    def minFallingPathSum(self, matrix: List[List[int]]) -> int:
+        def helper(i,j):
+            if i<0 or i>n-1 or j<0 or j>n-1:
+                return float("inf")
+            if i==n-1:
+                return matrix[i][j]
+            if (i,j) in memo:
+                return memo[(i,j)]
+            result=matrix[i][j] + min(helper(i+1,j),helper(i+1,j-1),helper(i+1,j+1))
+            memo[(i,j)]=result
+            return result
+        n=len(matrix)
+        memo={}
+        res=float("inf")
+        for i in range(len(matrix[0])):
+            res=min(res,helper(0,i))
+        return res
