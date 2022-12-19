@@ -1,0 +1,16 @@
+class Solution:
+    def validPath(self, n: int, edges: List[List[int]], source: int, destination: int) -> bool:
+        visited=[False]*n
+        res=defaultdict(list)
+        for i in edges:
+            res[i[0]].append(i[1])
+            res[i[1]].append(i[0])
+        q=[source]
+        while q:
+            c=q.pop(0)
+            if c == destination:
+                return True
+            if c in res and not visited[c]:
+                q.extend(res[c])
+            visited[c]=True
+        return False
