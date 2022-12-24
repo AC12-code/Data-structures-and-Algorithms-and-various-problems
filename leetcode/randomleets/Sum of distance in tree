@@ -1,0 +1,25 @@
+class Solution:
+    def sumOfDistancesInTree(self, n: int, edges: List[List[int]]) -> List[int]:
+        store=defaultdict(set)
+        for i,j in edges:
+            store[i].add(j)
+            store[j].add(i)
+        res=[0]*n
+        count=[1]*n
+        def dfs1(root,prev):
+            for i in store[root]:
+                if i!=prev:
+                    dfs1(i,root)
+                    count[root]+=count[i]
+                    res[root]+=res[i]+count[i]
+        def dfs2(root,prev):
+            for i in store[root]:
+                if i!=prev:
+                    res[i]=res[root]-count[i]+(n-count[i])
+                    dfs2(i,root)
+        dfs1(0,-1)
+        dfs2(0,-1)
+        return res
+        
+        #ref-https://www.youtube.com/watch?v=gmEsErNo84g
+        #res[i]=res[root]-count[i]+(n-count[i])  ==  res[i]=res[root]-count[closer elements]+count[further elements]
