@@ -1,0 +1,14 @@
+class Solution:
+    def maximumBags(self, capacity: List[int], rocks: List[int], additionalRocks: int) -> int:
+        full=0
+        store=[]
+        for i in range(len(capacity)):
+            store.append(capacity[i]-rocks[i])
+        store.sort()
+        for j in store:
+            if j<=additionalRocks:
+                full+=1
+                additionalRocks-=j
+            else:
+                break
+        return full
