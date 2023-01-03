@@ -1,0 +1,26 @@
+class Solution:
+    def minDeletionSize(self, strs: List[str]) -> int:
+        #Solution 1:
+
+        dis=defaultdict(str)
+        del_count=0
+        for i in strs:
+            for j in range(len(i)):
+                dis[j]+=i[j]
+        for i in dis:
+            c=''.join(sorted(dis[i]))
+            if dis[i]!=c:
+                del_count+=1
+        return del_count
+
+        #Solution 2:
+        
+        del_count=0
+        r,c=len(strs),len(strs[0])
+        for i in range(c):
+            for j in range(1,r):
+                if strs[j][i]<strs[j-1][i]:
+                    del_count+=1
+                    break
+        return del_count
+                
