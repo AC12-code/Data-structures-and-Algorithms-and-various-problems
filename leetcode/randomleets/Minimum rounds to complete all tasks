@@ -1,0 +1,18 @@
+class Solution:
+    def minimumRounds(self, tasks: List[int]) -> int:
+        rounds=0
+        dis=dict()
+        for i in tasks:
+            if i in dis:
+                dis[i]+=1
+            else:
+                dis[i]=1
+        for i in dis:
+            if dis[i]<2:
+                return -1
+            elif 2<=dis[i]<=3:
+                rounds+=1
+            else:
+                c=ceil(dis[i]/3)
+                rounds+=c
+        return rounds
