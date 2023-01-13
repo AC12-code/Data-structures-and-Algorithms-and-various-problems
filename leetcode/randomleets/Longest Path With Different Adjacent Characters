@@ -1,0 +1,25 @@
+class Solution:
+    def longestPath(self, parent: List[int], s: str) -> int:
+        res=1
+        dis=defaultdict(list)
+       
+        for i,j in enumerate(parent):
+            dis[j].append(i)
+        def dfs(node):
+            nonlocal res
+            max1=max2=0
+            for i in dis[node]:
+                number=dfs(i)
+                if s[node]!=s[i]:
+                    if max1<number:
+                        max1,max2=number,max1
+                    elif max2<number:
+                        max2=number
+            res=max(res,max1+max2+1)
+            return max1+1
+
+
+        
+    
+        dfs(0)
+        return res
