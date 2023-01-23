@@ -1,0 +1,12 @@
+class Solution:
+    def allPathsSourceTarget(self, graph: List[List[int]]) -> List[List[int]]:
+        ans = []
+        def dfs(node, stack):
+            if node == len(graph) - 1:
+                ans.append(stack)
+            for i in graph[node]:
+                    dfs(i, stack+[i])
+            return
+
+        dfs(0, [0])
+        return ans
