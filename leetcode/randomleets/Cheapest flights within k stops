@@ -1,0 +1,21 @@
+class Solution:
+    def findCheapestPrice(self, n: int, flights: List[List[int]], src: int, dst: int, k: int) -> int:
+        dis=defaultdict(list)
+        paths=collections.deque()
+        min_price=float('inf')
+        for i,j,l in flights:
+            dis[i].append((j,l))
+        
+        
+        paths.append((src,0,0))
+        while paths:
+            city,steps,total=paths.popleft()
+            if city==dst:
+                min_price=min(min_price,total)
+                continue
+            if steps<=k and total<=min_price:
+                for i in dis[city]:          
+                    paths.append((i[0],steps+1,total+i[1]))
+        if min_price==float('inf'):
+            return -1
+        return min_price
