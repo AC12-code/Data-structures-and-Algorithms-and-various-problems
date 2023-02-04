@@ -1,0 +1,17 @@
+class Solution:
+    def checkInclusion(self, s1: str, s2: str) -> bool:
+        s,n,matched=Counter(s1),len(s1),0
+        for i in range(len(s2)):
+            if s2[i] in s:
+                s[s2[i]]-=1
+                if s[s2[i]]==0:
+                    matched+=1
+            if i>=n and s2[i-n] in s:
+                if s[s2[i-n]]==0:
+                    matched-=1
+                s[s2[i-n]]+=1
+            if matched==len(s):
+                return True
+            
+        return False
+            
