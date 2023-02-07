@@ -1,0 +1,18 @@
+class Solution:
+    def totalFruit(self, fruits: List[int]) -> int:
+        n=len(fruits)
+        if n ==1:
+            return n
+        res=Counter()
+        c=0 
+        maxm=0     
+        for i in range(n):        
+            res[fruits[i]]+=1
+            while len(res)>2:
+                res[fruits[c]]-=1
+                if res[fruits[c]]==0:
+                    res.pop(fruits[c])
+                c+=1
+            maxm=max(maxm,i-c+1)
+        return maxm
+           
