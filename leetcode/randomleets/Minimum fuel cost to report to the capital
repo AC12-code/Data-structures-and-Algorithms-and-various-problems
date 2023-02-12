@@ -1,0 +1,25 @@
+class Solution:
+    def minimumFuelCost(self, roads: List[List[int]], seats: int) -> int:
+        adj=defaultdict(list)
+        visited=set()
+        
+        for i in roads:
+    
+            adj[i[0]].append(i[1])
+            adj[i[1]].append(i[0])
+        def dfs(node):
+            nonlocal tot
+            people=1
+            if node not in visited:
+                visited.add(node)
+                for i in adj[node]:
+                    if i in visited:continue
+                    people+=dfs(i)
+                tot+=(ceil(people/seats)if node else 0)
+                return people
+        
+        tot=0
+        dfs(0)
+            
+        return tot
+        
