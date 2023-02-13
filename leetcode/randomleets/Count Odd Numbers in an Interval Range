@@ -15,3 +15,10 @@ class Solution:
         if high%2!=0 and low%2==0:
             low+=1
             return ceil((high-low+1)/2)
+
+
+#make both  to odd number first,if low=even,low+=1
+                                if high=even,high-=1
+#Consider all cases such as both equal
+                            1 even 1 odd
+                            both even/both odd
