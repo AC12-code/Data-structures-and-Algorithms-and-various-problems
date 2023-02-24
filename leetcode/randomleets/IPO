@@ -1,0 +1,24 @@
+class Solution:
+    def findMaximizedCapital(self, k: int, w: int, profits: List[int], capital: List[int]) -> int:
+        lis=[]
+        store=[]
+        c=0
+        for i in range(len(profits)):
+            lis.append((capital[i],profits[i]))
+        lis.sort()
+        
+        while k > 0:
+            while c<len(lis) and lis[c][0]<=w:
+                heapq.heappush(store,  -lis[c][1])
+                c+=1
+                    
+            if store:
+                d = heapq.heappop(store)
+                w-=d
+                k-=1
+            else:
+                break
+        return w
+
+         
+
