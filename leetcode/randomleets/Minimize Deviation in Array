@@ -1,0 +1,19 @@
+class Solution:
+    def minimumDeviation(self, nums: List[int]) -> int:
+        max_heap=[]
+        for i in nums:
+            if i%2!=0:
+                i=2*i
+            heapq.heappush(max_heap,-i)
+
+        min_dev=float('inf')
+        min_val=-max(max_heap)
+        
+        while len(max_heap)==len(nums):
+            curr=-heapq.heappop(max_heap)
+            min_dev=min(min_dev,curr-min_val)
+            if curr%2==0:
+                heapq.heappush(max_heap,-curr//2)
+                min_val=min(min_val,curr//2)
+        return min_dev
+       
