@@ -1,0 +1,13 @@
+class Solution:
+    def minimumTime(self, time: List[int], totalTrips: int) -> int:
+        l,h = 1, min(time)*totalTrips
+        while l<=h:
+            c=0
+            mid=l+((h-l)//2)
+            for i in time:
+                c+=(mid//i)
+            if c>=totalTrips:
+                h=mid-1
+            else:
+                l=mid+1
+        return l
