@@ -20,3 +20,18 @@ class Solution:
             head=head.next
             s=s.next
         return head
+        
+        #proof
+        a=distance from start to loop start 
+        b=distance from loop start to intersection
+        c=distance from intersection to loop start
+
+        Since fast is 2X of slow
+        total distance fast=2(total distance slow)
+
+        slow=a+b
+        fast=a+b+c+b
+        Therefore,
+        a+2b+c=2(a+b)
+        c=a
+0 comments on commit 052c516
