@@ -1,0 +1,17 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def isCompleteTree(self, root: Optional[TreeNode]) -> bool:
+        store=[root]
+        i=0
+        while store[i]:
+            store.append(store[i].left)
+            store.append(store[i].right)
+            i+=1
+        c=set(store[i:])
+        if c=={None}:return True
+        
