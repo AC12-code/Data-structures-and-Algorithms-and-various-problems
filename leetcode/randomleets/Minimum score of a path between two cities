@@ -1,0 +1,19 @@
+class Solution:
+    def minScore(self, n: int, roads: List[List[int]]) -> int:
+        dis=defaultdict(list)
+        for i in roads:
+            dis[i[0]].append((i[1],i[2]))
+            dis[i[1]].append((i[0],i[2]))
+        store=[1]
+        visited=set()
+        visited.add(1)
+        score=float('inf')
+        while store:
+            c=store.pop(0)
+            for i in dis[c]:
+                if i[0] not in visited:
+                    visited.add(i[0])
+                    store.append(i[0])
+                score=min(i[1],score)    
+        return score
+
