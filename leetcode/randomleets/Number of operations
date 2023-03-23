@@ -1,0 +1,24 @@
+class Solution:
+    def makeConnected(self, n: int, connections: List[List[int]]) -> int:
+        if n-1>len(connections):return -1
+        dis=defaultdict(set)
+        res=0
+        for i,j in connections:
+            dis[i].add(j)
+            dis[j].add(i)
+        seen=[0]*n
+        def dfs(comp):
+            if seen[comp]:return 0
+            seen[comp]=1
+            for i in dis[comp]:
+                dfs(i)
+            return 1
+        for i in range(n):
+            res+=dfs(i)
+        return res-1
+        
+
+
+
+
+        
