@@ -1,0 +1,20 @@
+class Solution:
+    def minReorder(self, n: int, connections: List[List[int]]) -> int:
+        dis=defaultdict(list)
+        cons=set()
+        res=0
+        for i,j in connections:
+            dis[i].append(j)
+            dis[j].append(i)
+            cons.add((i,j))
+
+        def dfs(curr,parent):
+            nonlocal res
+            if (parent,curr) in cons:
+                res+=1
+            for i in dis[curr]:
+                if i==parent:continue
+                dfs(i,curr)
+            
+        dfs(0,-1)
+        return res
