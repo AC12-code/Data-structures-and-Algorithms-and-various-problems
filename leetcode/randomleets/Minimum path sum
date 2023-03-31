@@ -1,0 +1,27 @@
+class Solution:
+    def minPathSum(self, grid: List[List[int]]) -> int:
+        #TLE
+        # res=set()
+        # def mat(r,c,sum):      
+        #     if r==len(grid)-1 and c==len(grid[0])-1:
+        #         res.add(sum)
+        #         return       
+        #     directions=[(0,1),(1,0)]
+        #     for i,j in directions:
+        #         if 0<=r+i<=len(grid)-1 and 0<=c+j<=len(grid[0])-1:
+        #             mat(r+i,c+j,sum+grid[r+i][c+j])
+
+        # mat(0,0,grid[0][0])
+        # return min(res)
+
+        r,c=len(grid),len(grid[0])
+        for i in range(1,r):
+            grid[i][0]+=grid[i-1][0]
+
+        for j in range(1,c):
+            grid[0][j]+=grid[0][j-1]
+
+        for i in range(1,r):
+            for j in range(1,c):
+                grid[i][j]+=min(grid[i-1][j],grid[i][j-1])
+        return grid[-1][-1]
