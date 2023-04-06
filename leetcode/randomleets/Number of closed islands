@@ -1,0 +1,23 @@
+class Solution:
+    def closedIsland(self, grid: List[List[int]]) -> int:
+        c,d=len(grid),len(grid[0])
+        res=0
+        what=True
+        def dfs(i,j):
+            nonlocal what
+            if i in (0,c-1) or j in (0,d-1):
+                what=False
+                return
+            dir=[(0,1),(1,0),(0,-1),(-1,0)]
+            for m,n in dir:
+                if 0<=i+m<=c-1 and 0<=j+n<=d-1 and grid[i+m][j+n]==0:
+                    grid[i+m][j+n]=-1
+                    dfs(i+m,j+n)
+            
+        for i in range(1,c-1):
+            for j in range(1,d-1):    
+                if grid[i][j]==0:
+                    what=True
+                    dfs(i,j)
+                    res+=what
+        return res
