@@ -1,0 +1,59 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def longestZigZag(self, root: Optional[TreeNode]) -> int:
+        res=0
+        def zig(root,dire,count):
+            nonlocal res   
+            if not root:return
+            res=max(res,count)
+            if dire=='r':
+                zig(root.left,'r',1)
+                zig(root.right,'l',count+1)
+            else:
+                zig(root.right,'l',1)
+                zig(root.left,'r',count+1)
+        zig(root,'l',0)
+        zig(root,'r',0)
+        return res
+        
+     #TLE   
+     
+        # Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def longestZigZag(self, root: Optional[TreeNode]) -> int:
+        zigs=set()
+        def zig(root,dire,count):
+            if not root:
+                zigs.add(count)
+                return
+            if dire=='n':
+                zig(root.left,'l',count+1)
+                zig(root.right,'r',count+1)
+            elif dire=='r':
+                zig(root.left,'l',count+1)
+            else:
+                zig(root.right,'r',count+1)
+
+        stack=[root]
+        new=[]
+        while stack:
+            for i in stack:
+                zig(i,'n',0)
+                if i.left:
+                    new.append(i.left)
+                if i.right:
+                    new.append(i.right)
+            stack=new
+            new=[]
+            
+        return max(zigs)-1
