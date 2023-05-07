@@ -1,0 +1,11 @@
+class Solution:
+    def longestObstacleCourseAtEachPosition(self, obstacles: List[int]) -> List[int]:
+        mono,res=[],[]
+        for i in obstacles:
+            c=bisect.bisect(mono,i)
+            res.append(c+1)
+            if c==len(mono):
+                mono.append(0)
+            mono[c]=i
+
+        return res
