@@ -1,0 +1,29 @@
+class Solution:
+    def generateMatrix(self, n: int) -> List[List[int]]:
+        mat=[[0 for i in range(n)] for j in range(n)]
+        row_beg,col_beg=0,0
+        row_end,col_end=n-1,n-1
+        res=[]
+        temp=[]
+        c=1
+        while (row_beg<=row_end) and (col_beg<=col_end):
+            for i in range(col_beg,col_end+1):
+                mat[row_beg][i]=c
+                c+=1
+            row_beg+=1
+            
+            for i in range(row_beg,row_end+1):
+                mat[i][col_end]=c
+                c+=1
+            col_end-=1
+            if (row_beg<=row_end):
+                for i in range(col_end,col_beg-1,-1):
+                    mat[row_end][i]=c
+                    c+=1
+                row_end-=1
+            if (col_beg<=col_end):
+                for i in range(row_end,row_beg-1,-1):
+                    mat[i][col_beg]=c
+                    c+=1
+                col_beg+=1 
+        return mat
