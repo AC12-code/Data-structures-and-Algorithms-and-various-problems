@@ -1,0 +1,16 @@
+class Solution:
+    def maxScore(self, nums1: List[int], nums2: List[int], k: int) -> int:
+        tot,res=0,0
+        heap=[]
+        pairs=zip(nums1,nums2)
+        sorted_pair=sorted(pairs,key=lambda x:x[-1],reverse=True)
+        for i in sorted_pair:
+            num1,num2=i
+            tot+=num1
+            heappush(heap,num1)
+            if len(heap)>k:
+                tot-=heappop(heap)
+            if len(heap)==k:
+                res=max(res,tot*num2)
+            
+        return res
