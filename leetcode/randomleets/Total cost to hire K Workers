@@ -1,0 +1,53 @@
+class Solution:
+    def totalCost(self, costs: List[int], k: int, candidates: int) -> int:
+        tot=0
+        i=0
+        j=len(costs)-1
+        c,d=[],[]
+        
+        while k>0:
+            while len(c)<candidates and i<=j:
+                heapq.heappush(c,costs[i])
+                i+=1
+            while len(d)<candidates and i<=j:
+                heapq.heappush(d,costs[j])
+                j-=1
+            
+            mini=c[0] if c else float('inf')
+            lil=d[0] if d else float('inf')
+           
+           
+            if mini<=lil:
+                tot+=mini
+                heapq.heappop(c)
+            else:
+                tot+=lil
+                heapq.heappop(d)
+            k-=1
+        return tot
+
+
+#TLE sol'n
+class Solution:
+    def totalCost(self, costs: List[int], k: int, candidates: int) -> int:
+        tot=0
+        while k>0:
+            mini,lil=float('inf'),float('inf')
+            n=len(costs)
+            c,d=costs[:candidates],costs[n-candidates:]
+            for i in range(len(c)):
+                if c[i]<mini:
+                    mini=c[i]
+                    remove=i
+            for i,j in enumerate(d,start=(n-candidates)):
+                if j<lil:
+                    lil=j
+                    rem=i
+            if mini<=lil:
+                tot+=mini
+                costs.pop(remove)
+            else:
+                tot+=lil
+                costs.pop(rem)
+            k-=1
+        return tot
