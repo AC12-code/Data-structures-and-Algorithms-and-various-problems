@@ -1,0 +1,22 @@
+class Solution:
+    def winnerOfGame(self, colors: str) -> bool:
+        if len(colors)<3:return False
+        c,d=1,len(colors)-2
+        count1,count2=0,0
+        while c<=d:
+            if colors[c]=='A':
+                if colors[c-1]==colors[c] and colors[c+1]==colors[c]:
+                    count1+=1
+            if colors[d]=='A':
+                if colors[d-1]==colors[d] and colors[d+1]==colors[d]:
+                    count1+=1
+            if colors[c]=='B':
+                if colors[c-1]==colors[c] and colors[c+1]==colors[c]:
+                    count2+=1
+            if colors[d]=='B':
+                if colors[d-1]==colors[d] and colors[d+1]==colors[d]:
+                    count2+=1
+            c+=1
+            d-=1
+        if count1>count2:return True
+        return False
