@@ -16,5 +16,25 @@ class Solution:
                     dfs(grid,i,j)
                     islands+=1
         return islands
+
+class Solution:
+    def numIslands(self, grid: List[List[str]]) -> int:
+        visited=set()
+        def dfs(c,d,mat):
+            visited.add((c,d))
+            directions=[(0,1),(1,0),(0,-1),(-1,0)]
+            for i,j in directions:
+                if c+i<len(mat) and d+j<len(mat[0]) and 0<=c<=len(mat)-1 and 0<=d<=len(mat[0])-1 and (c+i,d+j) not in visited:
+                    if mat[c+i][d+j]=='1':
+                        dfs(c+i,d+j,mat)
+                
+
+        ans=0
+        for i in range(len(grid)):
+            for j in range(len(grid[0])):
+                if (i,j) not in visited and grid[i][j]=='1':
+                    dfs(i,j,grid)
+                    ans+=1
+        return ans
         
         
