@@ -1,0 +1,13 @@
+class Solution:
+    def maximumSwap(self, num: int) -> int:
+        num=[int(i) for i in str(num)]
+        maxm=len(num)-1
+        xi=yi=0
+        for i in range(len(num)-1,-1,-1):
+            if num[i]>num[maxm]:
+                maxm=i
+            if num[i]<num[maxm]:
+                xi=maxm
+                yi=i
+        num[xi],num[yi]=num[yi],num[xi]
+        return int(''.join([str(i) for i in num]))
