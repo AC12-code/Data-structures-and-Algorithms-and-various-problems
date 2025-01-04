@@ -1,0 +1,19 @@
+class Solution:
+    def countPalindromicSubsequence(self, s: str) -> int:
+        start=[float('inf')]*26
+        last=[float('-inf')]*26
+        for i in range(len(s)):
+            charind=ord(s[i])-ord('a')
+            start[charind]=min(start[charind],i)
+            last[charind]=max(last[charind],i)
+        res=0
+   
+        for j in range(26):
+            if start[j]==float('inf') or last[j]==float('-inf'):
+                continue
+            uniqs=set()
+            for i in range(start[j]+1,last[j]):
+                uniqs.add(s[i])
+          
+            res+=len(uniqs)
+        return res
