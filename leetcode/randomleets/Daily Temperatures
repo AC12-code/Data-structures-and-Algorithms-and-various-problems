@@ -1,0 +1,14 @@
+class Solution:
+    def dailyTemperatures(self, temperatures: List[int]) -> List[int]:
+        more=[]
+        res=[0]*len(temperatures)
+        
+        for i in range(len(temperatures)):
+            
+            if more:
+                while temperatures[more[-1]] < temperatures[i]:
+                    res[more[-1]]=i-more[-1]
+                    more.pop(-1)
+                    if not more:break
+            more.append(i)
+        return res
