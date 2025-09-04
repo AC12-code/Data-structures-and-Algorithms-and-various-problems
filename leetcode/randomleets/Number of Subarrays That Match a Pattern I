@@ -1,0 +1,15 @@
+class Solution:
+    def countMatchingSubarrays(self, nums: List[int], pattern: List[int]) -> int:
+        dupli=[]
+        count=0 
+        for i in range(1,len(nums)):
+            if nums[i]>nums[i-1]:
+                dupli.append(1)
+            elif nums[i]<nums[i-1]:
+                dupli.append(-1)
+            else:
+                dupli.append(0)
+        for j in range(len(dupli)-len(pattern)+1):
+            if dupli[j:j+len(pattern)]==pattern:
+                count+=1
+        return count
