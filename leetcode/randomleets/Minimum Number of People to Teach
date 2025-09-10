@@ -1,0 +1,15 @@
+class Solution:
+    def minimumTeachings(self, n: int, languages: List[List[int]], friendships: List[List[int]]) -> int:
+        teach=0
+        track=set()
+        for i,j in (friendships):
+            common = list(set(languages[i- 1])  & set(languages[j - 1]))
+            if not common:
+                track.add(i-1)
+                track.add(j-1)
+            
+        d=Counter()
+        for i in track:
+            for j in languages[i]:
+                d[j]+=1
+        return 0 if not track else len(track)-max(d.values())
