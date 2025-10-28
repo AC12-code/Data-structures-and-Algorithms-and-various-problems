@@ -1,0 +1,40 @@
+class Solution:
+    def countValidSelections(self, nums: List[int]) -> int:
+        
+        res=0
+        new=nums[:]
+
+        c=[0]*(len(nums))
+        if nums==c:return len(nums)*2
+        rev,p_rev=-1,-1
+        ind=[]
+        dis=dict()
+        for i in range(len(nums)):
+            if nums[i]==0:
+                ind.append(i)
+                dis[i]=0
+
+        while ind:
+            if dis[ind[0]]==2:
+                ind.pop(0)
+            if not ind:break
+            new=nums[:]
+            curr=ind[0]
+            rev=p_rev*-1
+            p_rev=rev
+            curr+=rev
+            while True:
+                if curr>len(nums)-1 or curr<0:break
+                if new==c:
+                    res+=1
+                    break
+
+                if new[curr]>0:
+                    new[curr]-=1
+                    rev*=-1
+                    curr+=rev
+                else:
+                    curr+=rev
+            dis[ind[0]]+=1
+
+        return res
