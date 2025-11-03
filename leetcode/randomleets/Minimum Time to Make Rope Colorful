@@ -1,0 +1,17 @@
+class Solution:
+    def minCost(self, colors: str, neededTime: List[int]) -> int:
+        res=0
+        track=[]
+        for i in range(len(colors)):
+            if track and colors[track[-1]]==colors[i]:
+                if neededTime[track[-1]]<=neededTime[i]:
+                    res+=neededTime[track[-1]]
+                    track.pop()
+                else:
+                    res+=neededTime[i]
+                    continue
+            track.append(i)
+        return res
+
+         
+                
