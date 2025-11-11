@@ -1,0 +1,30 @@
+class Solution:
+    def findMaxForm(self, strs: List[str], m: int, n: int) -> int:
+        
+        l=len(strs)
+
+        dp=[[[-1 for col in range(n+1)] for col in range(m+1)] for row in range(l)]
+
+        def knapsack(l,zero,one):
+            if l<0 or (zero==0 and one==0):
+                return 0
+
+            c0=strs[l].count("0")
+            c1=strs[l].count("1")
+
+            if dp[l][zero][one]!=-1:
+                return dp[l][zero][one]
+
+            if c0>zero or c1>one:
+                dp[l][zero][one]= knapsack(l-1,zero,one)
+                return dp[l][zero][one]
+            else:
+                include=1+knapsack(l-1,zero-c0,one-c1)
+                exclude=knapsack(l-1,zero,one)
+                dp[l][zero][one]= max(include,exclude)
+                return dp[l][zero][one]
+
+        return knapsack(l-1,m,n)
+
+
+https://leetcode.com/problems/ones-and-zeroes/solutions/814077/dedicated-to-beginners-by-rohanprakash-0nv7
