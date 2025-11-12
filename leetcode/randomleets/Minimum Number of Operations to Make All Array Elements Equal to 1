@@ -1,0 +1,18 @@
+class Solution:
+    def minOperations(self, nums: List[int]) -> int:
+        cnt=0
+        for j in nums:
+            if j==1:cnt+=1
+        if cnt:
+            return len(nums)-cnt
+        s=float('inf')
+
+        for i in range(len(nums)-1):
+            c=nums[i]
+            for j in range(i+1,len(nums)):
+                c=math.gcd(c,nums[j])
+                if c==1:
+                    s=min(s,j-i)
+        if s==float('inf'):return -1
+        return s+len(nums)-1
+            
