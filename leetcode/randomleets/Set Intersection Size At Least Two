@@ -1,0 +1,15 @@
+class Solution:
+    def intersectionSizeTwo(self, intervals: List[List[int]]) -> int:
+        intervals=sorted(intervals,key=lambda x:(x[1],-x[0]))
+        int_arr=[]
+        res=0
+        for i,j in intervals:
+            if not int_arr or i>int_arr[1]:
+                res+=2
+                int_arr=[j-1,j]
+            elif i>int_arr[0]:
+                res+=1
+                int_arr=[int_arr[1],j]
+        return res
+
+        
