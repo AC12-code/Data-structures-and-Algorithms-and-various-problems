@@ -1,0 +1,18 @@
+class Solution:
+    def canMeasureWater(self, x: int, y: int, target: int) -> bool:
+        if target==0 or target>x+y:return False
+        q=deque([0])
+        steps=[x,-x,y,-y]
+        seen=set()
+        tot=0
+        while q:
+            c=q.popleft()
+            for i in steps:
+                tot=i+c
+                
+                if tot==target:return True
+                
+                if tot not in seen and 0<=tot<=x+y:
+                    seen.add(tot)
+                    q.append(tot)
+        return False
