@@ -1,0 +1,14 @@
+class Solution:
+    def lengthLongestPath(self, input: str) -> int:
+        path={0:0}
+        depth=0
+        max_len=0
+        for i in input.splitlines():
+            name=i.lstrip('\t')
+            depth=len(i)-len(name)
+            if '.' in name:
+                max_len=max(max_len,path[depth]+len(name))
+            else:
+                path[depth+1]=path[depth]+len(name)+1
+
+        return max_len
