@@ -1,0 +1,36 @@
+class Solution:
+    def countHighestScoreNodes(self, parents: List[int]) -> int:
+        n=len(parents)
+        childs=[[] for i in range(n)]
+        subtree=[0 for i in range(n)]
+
+        for i in range(1,n):
+            childs[parents[i]].append(i)
+        def dfs(node):
+            size=1
+
+            for i in childs[node]:
+                size+=dfs(i)
+            subtree[node]=size
+            return size
+
+        dfs(0)
+
+        count=0
+        score=0
+        max_score=0
+        for i in range(n):
+            score=1
+            for sub in childs[i]:
+                score*=subtree[sub]
+
+            rest=n-subtree[i]
+            if rest:
+                score*=rest
+            if score>max_score:
+                max_score=score
+                count=1
+            elif score==max_score:
+                count+=1
+        return count
+
