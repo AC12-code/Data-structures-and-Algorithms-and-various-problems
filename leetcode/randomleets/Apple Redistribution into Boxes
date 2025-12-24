@@ -1,0 +1,15 @@
+class Solution:
+    def minimumBoxes(self, apple: List[int], capacity: List[int]) -> int:
+        t=sum(apple)
+        c=sorted(capacity,reverse=True)
+        ans=0
+        for i in c:
+            if not t:
+                return ans
+            if i>=t:
+                ans+=1
+                return ans
+            else:
+                t-=i
+                ans+=1
+        return ans
