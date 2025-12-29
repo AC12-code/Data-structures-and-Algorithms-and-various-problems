@@ -1,3 +1,5 @@
+#bfs
+
 class Solution:
     def numSquares(self, n: int) -> int:
         if n<2:return n
@@ -18,4 +20,33 @@ class Solution:
                     temp.add(i-j)
             c=temp
         return res
+    
+#dfs
+class Solution:
+    def numSquares(self, n: int) -> int:
+        squares = []
+        i = 1
+        while i * i <= n:
+            squares.append(i * i)
+            i += 1
+        
+        memo = {}
+
+        def dfs(rem):
+            if rem == 0:
+                return 0
+            if rem in memo:
+                return memo[rem]
+            
+            ans = float('inf')
+            for s in squares:
+                if s > rem:
+                    break
+                ans = min(ans, 1 + dfs(rem - s))
+            
+            memo[rem] = ans
+            return ans
+        
+        return dfs(n)
+
     
