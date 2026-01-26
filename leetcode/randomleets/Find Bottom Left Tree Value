@@ -1,0 +1,26 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def findBottomLeftValue(self, root: Optional[TreeNode]) -> int:
+        l_d=-1
+        res=0
+        def dfs(node,d):
+            nonlocal l_d
+            nonlocal res
+            if node:
+            
+                if d> l_d:
+                    l_d=d
+                    res=node.val
+
+                dfs(node.left,d+1)
+                dfs(node.right,d+1)
+            return 
+
+        dfs(root,0)
+    
+        return res
