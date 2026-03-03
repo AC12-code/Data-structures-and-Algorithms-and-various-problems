@@ -1,0 +1,15 @@
+class Solution:
+    def findKthBit(self, n: int, k: int) -> str:
+        res=[]
+        c=""
+        for i in range(n):
+            d=""
+            if not res:
+                res.append("0")
+            else:
+                for j in res[-1]:
+                    d+=str(1-int(j))
+                c=res[-1]+"1"+d[::-1]
+                res.append(c)
+
+        return res[-1][k-1]
