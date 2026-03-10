@@ -1,0 +1,12 @@
+class Solution:
+    def isValidSerialization(self, preorder: str) -> bool:
+        l=preorder.split(",")
+        slot=1
+        for i in l:
+            if not slot:return False
+            elif i=="#":
+                slot-=1
+            else:
+                slot+=1
+        return slot==0
+
