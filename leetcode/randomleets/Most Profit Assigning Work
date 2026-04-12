@@ -1,0 +1,11 @@
+class Solution:
+    def maxProfitAssignment(self, difficulty: List[int], profit: List[int], worker: List[int]) -> int:
+        d=sorted(zip(difficulty,profit))
+        res=m=c=0
+
+        for i in sorted(worker):
+            while c <len(d) and d[c][0]<=i:
+                m=max(m,d[c][1])
+                c+=1
+            res+=m
+        return res
