@@ -1,0 +1,11 @@
+class Solution:
+    def minMirrorPairDistance(self, nums: List[int]) -> int:
+        minm=float('inf')
+        dis=defaultdict(int)
+        for i in range(len(nums)-1,-1,-1):
+            if int(str(nums[i])[::-1]) in dis:
+                minm=min(minm,abs(i-dis[int(str(nums[i])[::-1])]))
+            dis[nums[i]]=i
+           
+        return minm if minm<float('inf') else -1
+        
