@@ -1,0 +1,27 @@
+class Solution:
+    def maxNumberOfFamilies(self, n: int, reservedSeats: List[List[int]]) -> int:
+        left = {2,3,4,5} 
+        right = {6,7,8,9} 
+        middle = {4,5,6,7}
+        t=defaultdict(list)
+        res=2*n
+        for i,j in reservedSeats:
+            t[i].append(j)
+        for i in t:
+    
+            l,m,r=0,0,0
+            actual=0
+            for j in t[i]:
+                if j in left and not l:
+                    l+=1
+                if j in middle and not m:
+                    m+=1
+                if j in right and not r:
+                    r+=1
+            if not l and not r:actual=2
+            elif l and m and r:actual=0
+            else:actual=1
+            
+            
+            res-=(2-actual)
+        return res
