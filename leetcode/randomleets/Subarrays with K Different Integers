@@ -1,0 +1,18 @@
+class Solution:
+    def subarraysWithKDistinct(self, nums: List[int], k: int) -> int:
+        def m(k):
+            dis =defaultdict(int)
+            left=0
+            t=0
+            for i in range(len(nums)):
+                dis[nums[i]]+=1
+                while len(dis)>k:
+                    dis[nums[left]]-=1
+                    
+                    if dis[nums[left]]==0:del dis[nums[left]]
+                
+                    left+=1
+                
+                t+=i-left+1
+            return t
+        return m(k)-m(k-1)
