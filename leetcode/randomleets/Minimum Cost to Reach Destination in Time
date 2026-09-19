@@ -1,0 +1,20 @@
+class Solution:
+    def minCost(self, maxTime: int, edges: list[list[int]], passingFees: list[int]) -> int:
+        adj=[[] for i in range(len(passingFees))]
+        for i,j,k in edges:
+            adj[i].append((j,passingFees[j],k))
+            adj[j].append((i,passingFees[i],k))
+        q=[(passingFees[0],0,0)]
+        minm=[float('inf')]* len(passingFees)
+      
+        while q:
+ 
+            fees,frag,curr=heapq.heappop(q)
+            if frag>maxTime or minm[curr]<=frag:continue
+            minm[curr]=frag
+            if curr==len(passingFees)-1:
+                return fees
+            for neigh,cal,f in adj[curr]:
+                if f+frag<=maxTime:
+                    heapq.heappush(q,(fees+cal,f+frag,neigh))
+        return -1
