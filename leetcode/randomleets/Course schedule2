@@ -1,0 +1,26 @@
+class Solution:
+    def findOrder(self, numCourses: int, prerequisites: list[list[int]]) -> list[int]:
+        current=set()
+        visited=set()
+        dis=defaultdict(list)
+        path=[]
+        for i,j in prerequisites:
+            dis[i].append(j)
+        def dfs(i):
+            if i in current:
+                return False
+            current.add(i)
+            for j in dis[i]:
+                if j not in visited:         
+                    if not dfs(j):
+                        return False         
+            path.append(i)
+            visited.add(i)
+            return True
+            
+        for i in range(numCourses):
+            if i not in visited:
+                c=dfs(i)
+                if not c:
+                    return []
+        return path
