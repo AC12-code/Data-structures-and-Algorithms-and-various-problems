@@ -1,0 +1,23 @@
+class Solution:
+    def eventualSafeNodes(self, graph: list[list[int]]) -> list[int]:
+        current=set()
+        visited=set()
+        for i in range(len(graph)):
+            if not graph[i]:          
+                visited.add(i)
+        def dfs(node):
+            if node in current:
+                return False
+            current.add(node)
+            for j in graph[node]:
+                if j not in visited:
+                    if not dfs(j):
+                        return False
+            visited.add(node)
+            return True
+                 
+        for i in range(len(graph)):
+            if i not in visited:
+                dfs(i)
+
+        return [i for i in range(len(graph)) if i in visited]
