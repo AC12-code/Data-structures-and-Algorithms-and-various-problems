@@ -1,0 +1,19 @@
+class Solution:
+    def exist(self, board: list[list[str]], word: str) -> bool:  
+        visited=set()
+        def dfs(c,d,t):
+            if t==len(word)-1:return True
+            visited.add((c,d))
+            dirs=[(0,1),(1,0),(-1,0),(0,-1)]
+            for i,j in dirs:
+                if 0<=c+i<len(board) and 0<=d+j<len(board[0]) and (c+i,d+j) not in visited and board[c+i][d+j]==word[t+1]:
+                    if dfs(c+i,d+j,t+1):return True
+            visited.remove((c,d))
+            return False
+         
+        for i in range(len(board)):
+            for j in range(len(board[0])):
+                if (i,j) not in visited and word[0]==board[i][j]:
+                    c=dfs(i,j,0)
+                    if c:return True
+        return False
